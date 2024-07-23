@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  OCTAVIO_QUINTO
-//
-//  Created by Federico Mireles on 18/06/24.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -12,16 +5,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-            guard let windowScene = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
 
-            window = UIWindow(windowScene: windowScene)
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
+        window = UIWindow(windowScene: windowScene)
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemBlue
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = .systemBlue
+        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = .darkGray
+        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.darkGray]
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = .white // Color for selected item
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white] // Color for selected item
+        
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
                 
-            window?.rootViewController = loginViewController
-            window?.makeKeyAndVisible()
-        }
+        window?.rootViewController = loginViewController
+        window?.makeKeyAndVisible()
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -52,25 +64,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func userDidLogin() {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let scrollViewUserSensorsViewController = storyboard.instantiateViewController(withIdentifier: "ScrollViewUserSensorsViewController") as! ScrollViewUserSensorsViewController
-            scrollViewUserSensorsViewController.tabBarItem = UITabBarItem(title: "Usuarios", image: UIImage(named: "list.png"), tag: 0)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+        // Primer UINavigationController
+        let firstViewController = storyboard.instantiateViewController(withIdentifier: "ScrollViewUserSensorsViewController") as! ScrollViewUserSensorsViewController
+        let firstNavController = UINavigationController(rootViewController: firstViewController)
+        firstNavController.tabBarItem = UITabBarItem(title: "Usuarios", image: UIImage(named: "list.png"), tag: 0)
 
-            let otherViewController = UIViewController()
-            otherViewController.view.backgroundColor = .brown
-            otherViewController.tabBarItem = UITabBarItem(title: "Other", image: UIImage(systemName: ""), tag: 1)
+        // Segundo UINavigationController
+        let secondViewController = UIViewController()
+        secondViewController.view.backgroundColor = .brown
+        let secondNavController = UINavigationController(rootViewController: secondViewController)
+        secondNavController.tabBarItem = UITabBarItem(title: "Other", image: UIImage(systemName: ""), tag: 1)
 
-            let tabBarController = UITabBarController()
-            tabBarController.viewControllers = [scrollViewUserSensorsViewController, otherViewController]
-        
+        // Tercer UINavigationController
+        let thirdViewController = UIViewController()
+        thirdViewController.view.backgroundColor = .blue
+        let thirdNavController = UINavigationController(rootViewController: thirdViewController)
+        thirdNavController.tabBarItem = UITabBarItem(title: "More", image: UIImage(systemName: ""), tag: 2)
+
+        // Configurar UITabBarController
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [firstNavController, secondNavController, thirdNavController]
+                
         tabBarController.tabBar.tintColor = .white
         tabBarController.tabBar.unselectedItemTintColor = .lightGray
 
-            if let window = window {
-                window.rootViewController = tabBarController
-                UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
-            }
+        if let window = window {
+            window.rootViewController = tabBarController
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
         }
+    }
 
 }
-

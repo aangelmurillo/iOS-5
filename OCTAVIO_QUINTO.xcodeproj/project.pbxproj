@@ -9,12 +9,21 @@
 /* Begin PBXBuildFile section */
 		0D332F7C2C4098B6009AD721 /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */; };
 		0D6D539B2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */; };
-		0D6D539D2C4AD76900A8F8D4 /* SlideOutToRightAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6D539C2C4AD76900A8F8D4 /* SlideOutToRightAnimator.swift */; };
-		0D6D539F2C4AD7BB00A8F8D4 /* CustomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6D539E2C4AD7BB00A8F8D4 /* CustomTransitioningDelegate.swift */; };
+		0D92F0AE2C5031AC00D48171 /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A42C5031AC00D48171 /* gps.png */; };
+		0D92F0AF2C5031AC00D48171 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A52C5031AC00D48171 /* thermometer.png */; };
+		0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */; };
+		0D92F0B12C5031AC00D48171 /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A72C5031AC00D48171 /* file.png */; };
+		0D92F0B22C5031AC00D48171 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A82C5031AC00D48171 /* user.png */; };
+		0D92F0B32C5031AC00D48171 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A92C5031AC00D48171 /* list.png */; };
+		0D92F0B42C5031AC00D48171 /* video-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AA2C5031AC00D48171 /* video-camera.png */; };
+		0D92F0B52C5031AC00D48171 /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AB2C5031AC00D48171 /* helmet.png */; };
+		0D92F0B62C5031AC00D48171 /* house-black-silhouette-without-door.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AC2C5031AC00D48171 /* house-black-silhouette-without-door.png */; };
+		0D92F0B72C5031AC00D48171 /* carbon-monoxide.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AD2C5031AC00D48171 /* carbon-monoxide.png */; };
+		0D92F0B92C5031C600D48171 /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0B82C5031C600D48171 /* casco_ibañez.png */; };
+		0DBC8AC82C50497300DF602B /* EnvironmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC8AC72C50497300DF602B /* EnvironmentViewController.swift */; };
 		0DBDA3102C49C5F0007F0D45 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */; };
 		0DBDA3122C49C60A007F0D45 /* GPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */; };
 		0DBDA3142C49C626007F0D45 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA3132C49C626007F0D45 /* CameraViewController.swift */; };
-		0DD7A6062C4EE47800E2C45B /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DD7A6052C4EE47800E2C45B /* casco_ibañez.png */; };
 		0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */; };
 		0DEFF7022C22051500BD6AD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */; };
 		0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF7032C22051500BD6AD8 /* ViewController.swift */; };
@@ -28,22 +37,21 @@
 /* Begin PBXFileReference section */
 		0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsViewController.swift; sourceTree = "<group>"; };
 		0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDismissableViewController.swift; sourceTree = "<group>"; };
-		0D6D539C2C4AD76900A8F8D4 /* SlideOutToRightAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutToRightAnimator.swift; sourceTree = "<group>"; };
-		0D6D539E2C4AD7BB00A8F8D4 /* CustomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitioningDelegate.swift; sourceTree = "<group>"; };
+		0D92F0A42C5031AC00D48171 /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
+		0D92F0A52C5031AC00D48171 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
+		0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple-users-silhouette.png"; sourceTree = "<group>"; };
+		0D92F0A72C5031AC00D48171 /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
+		0D92F0A82C5031AC00D48171 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		0D92F0A92C5031AC00D48171 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		0D92F0AA2C5031AC00D48171 /* video-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-camera.png"; sourceTree = "<group>"; };
+		0D92F0AB2C5031AC00D48171 /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
+		0D92F0AC2C5031AC00D48171 /* house-black-silhouette-without-door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house-black-silhouette-without-door.png"; sourceTree = "<group>"; };
+		0D92F0AD2C5031AC00D48171 /* carbon-monoxide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carbon-monoxide.png"; sourceTree = "<group>"; };
+		0D92F0B82C5031C600D48171 /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../../../../casco_ibañez.png"; sourceTree = "<group>"; };
+		0DBC8AC72C50497300DF602B /* EnvironmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewController.swift; sourceTree = "<group>"; };
 		0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSViewController.swift; sourceTree = "<group>"; };
 		0DBDA3132C49C626007F0D45 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		0DD7A5E62C4EE3BB00E2C45B /* video-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-camera.png"; sourceTree = "<group>"; };
-		0DD7A5E72C4EE3BB00E2C45B /* carbon-monoxide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carbon-monoxide.png"; sourceTree = "<group>"; };
-		0DD7A5E82C4EE3BB00E2C45B /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
-		0DD7A5E92C4EE3BB00E2C45B /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
-		0DD7A5EA2C4EE3BB00E2C45B /* multiple-users-silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple-users-silhouette.png"; sourceTree = "<group>"; };
-		0DD7A5EB2C4EE3BB00E2C45B /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
-		0DD7A5EC2C4EE3BB00E2C45B /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
-		0DD7A5ED2C4EE3BB00E2C45B /* house-black-silhouette-without-door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house-black-silhouette-without-door.png"; sourceTree = "<group>"; };
-		0DD7A5EE2C4EE3BB00E2C45B /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
-		0DD7A5EF2C4EE3BB00E2C45B /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
-		0DD7A6052C4EE47800E2C45B /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../../../../casco_ibañez.png"; sourceTree = "<group>"; };
 		0DEFF6FC2C22051500BD6AD8 /* OCTAVIO_QUINTO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCTAVIO_QUINTO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,22 +75,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0DD7A5E52C4EE3BB00E2C45B /* resources */ = {
+		0D92F0A32C5031AC00D48171 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				0DD7A6052C4EE47800E2C45B /* casco_ibañez.png */,
-				0DD7A5EE2C4EE3BB00E2C45B /* gps.png */,
-				0DD7A5E92C4EE3BB00E2C45B /* thermometer.png */,
-				0DD7A5EA2C4EE3BB00E2C45B /* multiple-users-silhouette.png */,
-				0DD7A5EF2C4EE3BB00E2C45B /* file.png */,
-				0DD7A5E82C4EE3BB00E2C45B /* user.png */,
-				0DD7A5EC2C4EE3BB00E2C45B /* list.png */,
-				0DD7A5E62C4EE3BB00E2C45B /* video-camera.png */,
-				0DD7A5EB2C4EE3BB00E2C45B /* helmet.png */,
-				0DD7A5ED2C4EE3BB00E2C45B /* house-black-silhouette-without-door.png */,
-				0DD7A5E72C4EE3BB00E2C45B /* carbon-monoxide.png */,
+				0D92F0B82C5031C600D48171 /* casco_ibañez.png */,
+				0D92F0A42C5031AC00D48171 /* gps.png */,
+				0D92F0A52C5031AC00D48171 /* thermometer.png */,
+				0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */,
+				0D92F0A72C5031AC00D48171 /* file.png */,
+				0D92F0A82C5031AC00D48171 /* user.png */,
+				0D92F0A92C5031AC00D48171 /* list.png */,
+				0D92F0AA2C5031AC00D48171 /* video-camera.png */,
+				0D92F0AB2C5031AC00D48171 /* helmet.png */,
+				0D92F0AC2C5031AC00D48171 /* house-black-silhouette-without-door.png */,
+				0D92F0AD2C5031AC00D48171 /* carbon-monoxide.png */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		0DBC8AC62C5048E500DF602B /* Sensors */ = {
+			isa = PBXGroup;
+			children = (
+				0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */,
+				0DBDA3132C49C626007F0D45 /* CameraViewController.swift */,
+				0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */,
+				0DBC8AC72C50497300DF602B /* EnvironmentViewController.swift */,
+				0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */,
+			);
+			path = Sensors;
 			sourceTree = "<group>";
 		};
 		0DEFF6F32C22051500BD6AD8 = {
@@ -104,23 +124,18 @@
 		0DEFF6FE2C22051500BD6AD8 /* OCTAVIO_QUINTO */ = {
 			isa = PBXGroup;
 			children = (
+				0D92F0A32C5031AC00D48171 /* resources */,
 				0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */,
 				0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */,
 				0DEFF7032C22051500BD6AD8 /* ViewController.swift */,
 				0DEFF7052C22051500BD6AD8 /* Main.storyboard */,
-				0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */,
-				0DD7A5E52C4EE3BB00E2C45B /* resources */,
+				0DBC8AC62C5048E500DF602B /* Sensors */,
 				0DEFF7082C22051600BD6AD8 /* Assets.xcassets */,
 				0DEFF70A2C22051600BD6AD8 /* LaunchScreen.storyboard */,
 				0DEFF70D2C22051600BD6AD8 /* Info.plist */,
 				0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */,
 				0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */,
-				0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */,
-				0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */,
-				0DBDA3132C49C626007F0D45 /* CameraViewController.swift */,
 				0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */,
-				0D6D539C2C4AD76900A8F8D4 /* SlideOutToRightAnimator.swift */,
-				0D6D539E2C4AD7BB00A8F8D4 /* CustomTransitioningDelegate.swift */,
 			);
 			path = OCTAVIO_QUINTO;
 			sourceTree = "<group>";
@@ -183,10 +198,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DD7A6062C4EE47800E2C45B /* casco_ibañez.png in Resources */,
+				0D92F0B52C5031AC00D48171 /* helmet.png in Resources */,
+				0D92F0AE2C5031AC00D48171 /* gps.png in Resources */,
 				0DEFF70C2C22051600BD6AD8 /* LaunchScreen.storyboard in Resources */,
+				0D92F0B32C5031AC00D48171 /* list.png in Resources */,
+				0D92F0B92C5031C600D48171 /* casco_ibañez.png in Resources */,
+				0D92F0B22C5031AC00D48171 /* user.png in Resources */,
+				0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */,
+				0D92F0B72C5031AC00D48171 /* carbon-monoxide.png in Resources */,
 				0DEFF7092C22051600BD6AD8 /* Assets.xcassets in Resources */,
 				0DEFF7072C22051500BD6AD8 /* Main.storyboard in Resources */,
+				0D92F0AF2C5031AC00D48171 /* thermometer.png in Resources */,
+				0D92F0B62C5031AC00D48171 /* house-black-silhouette-without-door.png in Resources */,
+				0D92F0B42C5031AC00D48171 /* video-camera.png in Resources */,
+				0D92F0B12C5031AC00D48171 /* file.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,14 +222,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBC8AC82C50497300DF602B /* EnvironmentViewController.swift in Sources */,
 				0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */,
 				0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */,
 				0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */,
 				0DBDA3122C49C60A007F0D45 /* GPSViewController.swift in Sources */,
 				0D332F7C2C4098B6009AD721 /* SensorsViewController.swift in Sources */,
-				0D6D539F2C4AD7BB00A8F8D4 /* CustomTransitioningDelegate.swift in Sources */,
 				0DEFF7022C22051500BD6AD8 /* SceneDelegate.swift in Sources */,
-				0D6D539D2C4AD76900A8F8D4 /* SlideOutToRightAnimator.swift in Sources */,
 				0DBDA3102C49C5F0007F0D45 /* TemperatureViewController.swift in Sources */,
 				0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */,
 				0D6D539B2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift in Sources */,

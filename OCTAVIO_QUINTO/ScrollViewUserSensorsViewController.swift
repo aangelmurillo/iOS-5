@@ -2,17 +2,15 @@ import UIKit
 
 class ScrollViewUserSensorsViewController: UIViewController {
     @IBOutlet weak var scrUsersSensors: UIScrollView!
-    @IBOutlet weak var viewTop: UIView!
-    
     
     private let viewContent = UIView()
-    private let customTransitioningDelegate = CustomTransitioningDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpViewContent()
         addUserViews()
+        configureCustomNavigationBar(title: "Ing. Octavio", subtitle: "octavio@gmail.com")
     }
     
     func setUpViewContent() {
@@ -54,7 +52,7 @@ class ScrollViewUserSensorsViewController: UIViewController {
             
             let button = UIButton(type: .system)
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.tag = i // Si necesitas identificar el botón más tarde
+            button.tag = i
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             userView.addSubview(button)
             
@@ -90,13 +88,13 @@ class ScrollViewUserSensorsViewController: UIViewController {
         }
     }
     
-    //PENDIENTE - Mantener el tabbar en todo el flujo de navegación de cada item
     @objc func buttonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let sensorsViewController = storyboard.instantiateViewController(withIdentifier: "SensorsViewController") as? SensorsViewController {
-            sensorsViewController.modalPresentationStyle = .fullScreen
-            sensorsViewController.transitioningDelegate = customTransitioningDelegate
-            self.present(sensorsViewController, animated: true, completion: nil)
+            // Asegúrate de que estás en un UINavigationController
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(sensorsViewController, animated: true)
+            }
         }
     }
 }

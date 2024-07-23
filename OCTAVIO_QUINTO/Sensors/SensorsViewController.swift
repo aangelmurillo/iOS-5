@@ -15,6 +15,7 @@ class SensorsViewController: SwipeDismissableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        configureCenteredNavBar(title: "MURILLO", subtitle: "C000")
     }
     
     override func viewWillAppear(_ animated: Bool)
