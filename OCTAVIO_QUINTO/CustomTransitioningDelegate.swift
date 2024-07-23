@@ -1,12 +1,7 @@
-//
-//  CustomTransitioningDelegate.swift
-//  OCTAVIO_QUINTO
-//
-//  Created by Federico Mireles on 19/07/24.
-//
-
 import UIKit
 
-class CustomTransitioningDelegate: NSObject {
-
+class CustomTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideOutToRightAnimator()
+    }
 }
