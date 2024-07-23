@@ -21,6 +21,9 @@
 		0D92F0B72C5031AC00D48171 /* carbon-monoxide.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AD2C5031AC00D48171 /* carbon-monoxide.png */; };
 		0D92F0B92C5031C600D48171 /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0B82C5031C600D48171 /* casco_ibañez.png */; };
 		0DBC8AC82C50497300DF602B /* EnvironmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC8AC72C50497300DF602B /* EnvironmentViewController.swift */; };
+		0DBC8ACB2C504E8000DF602B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBC8ACA2C504E8000DF602B /* MapKit.framework */; };
+		0DBC8ACD2C50751100DF602B /* RegistrarEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC8ACC2C50751100DF602B /* RegistrarEViewController.swift */; };
+		0DBC8ACF2C50763600DF602B /* InformacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC8ACE2C50763600DF602B /* InformacionViewController.swift */; };
 		0DBDA3102C49C5F0007F0D45 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */; };
 		0DBDA3122C49C60A007F0D45 /* GPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */; };
 		0DBDA3142C49C626007F0D45 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA3132C49C626007F0D45 /* CameraViewController.swift */; };
@@ -49,6 +52,9 @@
 		0D92F0AD2C5031AC00D48171 /* carbon-monoxide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carbon-monoxide.png"; sourceTree = "<group>"; };
 		0D92F0B82C5031C600D48171 /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../../../../casco_ibañez.png"; sourceTree = "<group>"; };
 		0DBC8AC72C50497300DF602B /* EnvironmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewController.swift; sourceTree = "<group>"; };
+		0DBC8ACA2C504E8000DF602B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0DBC8ACC2C50751100DF602B /* RegistrarEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrarEViewController.swift; sourceTree = "<group>"; };
+		0DBC8ACE2C50763600DF602B /* InformacionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformacionViewController.swift; sourceTree = "<group>"; };
 		0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSViewController.swift; sourceTree = "<group>"; };
 		0DBDA3132C49C626007F0D45 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBC8ACB2C504E8000DF602B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,11 +112,20 @@
 			path = Sensors;
 			sourceTree = "<group>";
 		};
+		0DBC8AC92C504E8000DF602B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC8ACA2C504E8000DF602B /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0DEFF6F32C22051500BD6AD8 = {
 			isa = PBXGroup;
 			children = (
 				0DEFF6FE2C22051500BD6AD8 /* OCTAVIO_QUINTO */,
 				0DEFF6FD2C22051500BD6AD8 /* Products */,
+				0DBC8AC92C504E8000DF602B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +152,8 @@
 				0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */,
 				0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */,
 				0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */,
+				0DBC8ACC2C50751100DF602B /* RegistrarEViewController.swift */,
+				0DBC8ACE2C50763600DF602B /* InformacionViewController.swift */,
 			);
 			path = OCTAVIO_QUINTO;
 			sourceTree = "<group>";
@@ -222,7 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBC8ACD2C50751100DF602B /* RegistrarEViewController.swift in Sources */,
 				0DBC8AC82C50497300DF602B /* EnvironmentViewController.swift in Sources */,
+				0DBC8ACF2C50763600DF602B /* InformacionViewController.swift in Sources */,
 				0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */,
 				0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */,
 				0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */,
