@@ -8,9 +8,11 @@
 import UIKit
 
 class InformacionViewController: UIViewController {
+    @IBOutlet weak var viewInfo: UIView!
     @IBOutlet var lblsInfo: [UILabel]!
     
     override func viewDidLoad() {
+        viewInfo.makeRoundView(cornerRadius: 5)
         super.viewDidLoad()
         for i in lblsInfo {
             i.adjustFontSize()

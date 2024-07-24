@@ -1,5 +1,5 @@
 //
-//  EnvironmentViewController.swift
+//  RegistrarEViewController.swift
 //  OCTAVIO_QUINTO
 //
 //  Created by Federico Mireles on 23/07/24.
@@ -7,17 +7,18 @@
 
 import UIKit
 
-class EnvironmentViewController: UIViewController {
+class RegistrarEViewController: UIViewController {
 
-    @IBOutlet var lblsEnv: [UILabel]!
+    @IBOutlet weak var viewR: UIView!
+    @IBOutlet weak var btnAcep: UIButton!
+    @IBOutlet weak var lblRegistrar: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        for i in lblsEnv{
-            i.adjustFontSize()
-        }
-
-        // Do any additional setup after loading the view.
-        configureCenteredNavBar(title: "MURILLO", subtitle: "C000")
+        lblRegistrar.adjustFontSize()
+        btnAcep.makeRoundButton(cornerRadius: 5)
+        viewR.makeRoundView(cornerRadius: 5)
+        
+        configureCustomNavigationBar(title: "Ing. Octavio", subtitle: "octavio@gmail.com")
     }
     
 

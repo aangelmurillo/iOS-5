@@ -108,4 +108,12 @@ extension UIViewController {
         self.navigationItem.titleView = customTitleView
     }
 
+    func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+        let alerta = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Aceptar", style: .default) { _ in
+            completion?()
+        }
+        alerta.addAction(ok)
+        present(alerta, animated: true, completion: nil)
+    }
 }

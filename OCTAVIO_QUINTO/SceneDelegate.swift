@@ -72,10 +72,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         firstNavController.tabBarItem = UITabBarItem(title: "Usuarios", image: UIImage(named: "list.png"), tag: 0)
 
         // Segundo UINavigationController
-        let secondViewController = UIViewController()
-        secondViewController.view.backgroundColor = .brown
+        let secondViewController = storyboard.instantiateViewController(withIdentifier: "CRUDViewController")
         let secondNavController = UINavigationController(rootViewController: secondViewController)
-        secondNavController.tabBarItem = UITabBarItem(title: "Other", image: UIImage(systemName: ""), tag: 1)
+        secondNavController.tabBarItem = UITabBarItem(title: "CRUD", image: UIImage(systemName: ""), tag: 1)
 
         // Tercer UINavigationController
         let thirdViewController = UIViewController()

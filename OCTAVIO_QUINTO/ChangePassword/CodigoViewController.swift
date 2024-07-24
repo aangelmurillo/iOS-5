@@ -1,19 +1,24 @@
 //
-//  RegistrarEViewController.swift
+//  CodigoViewController.swift
 //  OCTAVIO_QUINTO
 //
-//  Created by Federico Mireles on 23/07/24.
+//  Created by Federico Mireles on 24/07/24.
 //
 
 import UIKit
 
-class RegistrarEViewController: UIViewController {
+class CodigoViewController: UIViewController {
 
-    @IBOutlet weak var lblRegistrar: UILabel!
+    @IBOutlet weak var btnCon: UIButton!
+    @IBOutlet weak var viewC: UIView!
+    @IBOutlet weak var lblCodigo: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblRegistrar.adjustFontSize()
-        // Do any additional setup after loading the view.
+        viewC.makeRoundView(cornerRadius: 5)
+        btnCon.makeRoundButton(cornerRadius: 5)
+        
+
+        lblCodigo.adjustFontSize()
     }
     
 

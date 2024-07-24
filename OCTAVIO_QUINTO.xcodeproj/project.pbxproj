@@ -27,6 +27,12 @@
 		0DBDA3102C49C5F0007F0D45 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */; };
 		0DBDA3122C49C60A007F0D45 /* GPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */; };
 		0DBDA3142C49C626007F0D45 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBDA3132C49C626007F0D45 /* CameraViewController.swift */; };
+		0DC18A282C5172F30047B3C2 /* RegistrarUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A272C5172F30047B3C2 /* RegistrarUserViewController.swift */; };
+		0DC18A2A2C51747A0047B3C2 /* EditarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A292C51747A0047B3C2 /* EditarViewController.swift */; };
+		0DC18A2C2C5175880047B3C2 /* CodigoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A2B2C5175880047B3C2 /* CodigoViewController.swift */; };
+		0DC18A302C51775A0047B3C2 /* CambioContraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A2F2C51775A0047B3C2 /* CambioContraViewController.swift */; };
+		0DC18A322C51788A0047B3C2 /* IngresarcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A312C51788A0047B3C2 /* IngresarcViewController.swift */; };
+		0DC18A352C517D550047B3C2 /* CrudBtnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A342C517D550047B3C2 /* CrudBtnsViewController.swift */; };
 		0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */; };
 		0DEFF7022C22051500BD6AD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */; };
 		0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF7032C22051500BD6AD8 /* ViewController.swift */; };
@@ -58,6 +64,12 @@
 		0DBDA30F2C49C5F0007F0D45 /* TemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		0DBDA3112C49C60A007F0D45 /* GPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSViewController.swift; sourceTree = "<group>"; };
 		0DBDA3132C49C626007F0D45 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		0DC18A272C5172F30047B3C2 /* RegistrarUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrarUserViewController.swift; sourceTree = "<group>"; };
+		0DC18A292C51747A0047B3C2 /* EditarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarViewController.swift; sourceTree = "<group>"; };
+		0DC18A2B2C5175880047B3C2 /* CodigoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodigoViewController.swift; sourceTree = "<group>"; };
+		0DC18A2F2C51775A0047B3C2 /* CambioContraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CambioContraViewController.swift; sourceTree = "<group>"; };
+		0DC18A312C51788A0047B3C2 /* IngresarcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngresarcViewController.swift; sourceTree = "<group>"; };
+		0DC18A342C517D550047B3C2 /* CrudBtnsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrudBtnsViewController.swift; sourceTree = "<group>"; };
 		0DEFF6FC2C22051500BD6AD8 /* OCTAVIO_QUINTO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCTAVIO_QUINTO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D1B011B2C51B8D000C8632E /* Infromation */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC8ACE2C50763600DF602B /* InformacionViewController.swift */,
+			);
+			path = Infromation;
+			sourceTree = "<group>";
+		};
 		0D92F0A32C5031AC00D48171 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +140,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0DC18A332C517CF00047B3C2 /* CRUD */ = {
+			isa = PBXGroup;
+			children = (
+				0DBC8ACC2C50751100DF602B /* RegistrarEViewController.swift */,
+				0DC18A272C5172F30047B3C2 /* RegistrarUserViewController.swift */,
+				0DC18A292C51747A0047B3C2 /* EditarViewController.swift */,
+				0DC18A342C517D550047B3C2 /* CrudBtnsViewController.swift */,
+			);
+			path = CRUD;
+			sourceTree = "<group>";
+		};
+		0DC18A362C51B3260047B3C2 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				0DC18A2B2C5175880047B3C2 /* CodigoViewController.swift */,
+				0DC18A2F2C51775A0047B3C2 /* CambioContraViewController.swift */,
+				0DC18A312C51788A0047B3C2 /* IngresarcViewController.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
 		0DEFF6F32C22051500BD6AD8 = {
 			isa = PBXGroup;
 			children = (
@@ -152,8 +193,9 @@
 				0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */,
 				0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */,
 				0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */,
-				0DBC8ACC2C50751100DF602B /* RegistrarEViewController.swift */,
-				0DBC8ACE2C50763600DF602B /* InformacionViewController.swift */,
+				0D1B011B2C51B8D000C8632E /* Infromation */,
+				0DC18A362C51B3260047B3C2 /* ChangePassword */,
+				0DC18A332C517CF00047B3C2 /* CRUD */,
 			);
 			path = OCTAVIO_QUINTO;
 			sourceTree = "<group>";
@@ -245,14 +287,20 @@
 				0DBC8ACF2C50763600DF602B /* InformacionViewController.swift in Sources */,
 				0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */,
 				0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */,
+				0DC18A322C51788A0047B3C2 /* IngresarcViewController.swift in Sources */,
+				0DC18A2A2C51747A0047B3C2 /* EditarViewController.swift in Sources */,
 				0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */,
 				0DBDA3122C49C60A007F0D45 /* GPSViewController.swift in Sources */,
 				0D332F7C2C4098B6009AD721 /* SensorsViewController.swift in Sources */,
+				0DC18A302C51775A0047B3C2 /* CambioContraViewController.swift in Sources */,
+				0DC18A2C2C5175880047B3C2 /* CodigoViewController.swift in Sources */,
 				0DEFF7022C22051500BD6AD8 /* SceneDelegate.swift in Sources */,
 				0DBDA3102C49C5F0007F0D45 /* TemperatureViewController.swift in Sources */,
 				0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */,
 				0D6D539B2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift in Sources */,
+				0DC18A352C517D550047B3C2 /* CrudBtnsViewController.swift in Sources */,
 				0DBDA3142C49C626007F0D45 /* CameraViewController.swift in Sources */,
+				0DC18A282C5172F30047B3C2 /* RegistrarUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
