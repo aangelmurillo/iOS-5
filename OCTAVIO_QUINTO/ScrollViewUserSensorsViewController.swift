@@ -1,3 +1,4 @@
+// ScrollViewUserSensorsViewController.swift
 import UIKit
 
 class ScrollViewUserSensorsViewController: UIViewController {
@@ -5,9 +6,15 @@ class ScrollViewUserSensorsViewController: UIViewController {
     
     private let viewContent = UIView()
     
+    enum ActionType {
+        case edit
+        case delete
+    }
+    
+    var actionType: ActionType?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpViewContent()
         addUserViews()
         configureCustomNavigationBar(title: "Ing. Octavio", subtitle: "octavio@gmail.com")
@@ -91,10 +98,22 @@ class ScrollViewUserSensorsViewController: UIViewController {
     @objc func buttonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let sensorsViewController = storyboard.instantiateViewController(withIdentifier: "SensorsViewController") as? SensorsViewController {
-            // Asegúrate de que estás en un UINavigationController
-            if let navigationController = self.navigationController {
-                navigationController.pushViewController(sensorsViewController, animated: true)
+            if let actionType = actionType {
+                switch actionType {
+                case .edit:
+                    // Lógica para editar
+                    print("Editar usuario \(sender.tag + 1)")
+                case .delete:
+                    // Lógica para eliminar
+                    print("Eliminar usuario \(sender.tag + 1)")
+                }
+            } else {
+                // Acción predeterminada si no es eliminar o editar
+                if let navigationController = self.navigationController {
+                    navigationController.pushViewController(sensorsViewController, animated: true)
+                }
             }
         }
     }
+
 }

@@ -286,7 +286,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="209" height="392.66666666666669"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gps.png" translatesAutoresizingMaskIntoConstraints="NO" id="bGf-M3-0uV">
-                                                        <rect key="frame" x="52.333333333333336" y="95" width="104.33333333333331" height="104.33333333333331"/>
+                                                        <rect key="frame" x="52.333333333333336" y="95" width="104.33333333333329" height="104.33333333333331"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="bGf-M3-0uV" secondAttribute="height" id="vIF-fU-bRc"/>
                                                         </constraints>
@@ -678,7 +678,7 @@
                                 <rect key="frame" x="0.0" y="59" width="430" height="839"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tierra:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DZ-4O-5iN">
-                                        <rect key="frame" x="23.333333333333329" y="278.66666666666669" width="74" height="30"/>
+                                        <rect key="frame" x="23.333333333333329" y="278.66666666666669" width="74.000000000000014" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -729,7 +729,7 @@
                                         <rect key="frame" x="21.666666666666657" y="562.33333333333337" width="387" height="167.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La humedad es de: 30%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuS-yW-RDx">
-                                                <rect key="frame" x="48.333333333333314" y="50.333333333333258" width="290" height="67"/>
+                                                <rect key="frame" x="48.333333333333314" y="50.333333333333258" width="289.99999999999994" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -878,6 +878,7 @@
                     <tabBarItem key="tabBarItem" title="Item 1" image="square.and.arrow.up.fill" catalog="system" id="5ao-Je-IHo">
                         <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="1KM-7l-kXv"/>
                     <connections>
                         <outlet property="scrUsersSensors" destination="NOW-jK-wnH" id="tc8-nJ-vYs"/>
                     </connections>
@@ -1175,7 +1176,7 @@
                                             <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="7rX-Fm-7AJ" kind="show" id="d6Y-R6-UTI"/>
+                                            <segue destination="EUV-LM-VVP" kind="show" identifier="showEditSensors" id="Jsv-ql-LVk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yS-O2-XtE">
@@ -1186,9 +1187,6 @@
                                             <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="21"/>
                                             <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="rUJ-Co-y81" kind="show" id="i5R-8D-riy"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-zc-Xpm">
                                         <rect key="frame" x="34.333333333333343" y="562" width="361.33333333333326" height="151"/>
@@ -1198,6 +1196,9 @@
                                             <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="21"/>
                                             <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="EUV-LM-VVP" kind="show" identifier="showDeleteSensors" id="Jhw-OR-39d"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1240,7 +1241,7 @@
         <!--Editar View Controller-->
         <scene sceneID="RDz-fI-YT2">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="7rX-Fm-7AJ" customClass="EditarViewController" customModule="OCTAVIO_QUINTO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditarViewController" modalPresentationStyle="fullScreen" id="7rX-Fm-7AJ" customClass="EditarViewController" customModule="OCTAVIO_QUINTO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tdM-bR-gYK">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1734,13 +1735,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gottfried" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25x-cu-RhM">
-                                                <rect key="frame" x="255.33333333333334" y="75.333333333333314" width="123.6666666666666" height="42"/>
+                                                <rect key="frame" x="255.33333333333334" y="75.333333333333314" width="123.66666666666666" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                 <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gútierrez" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5c-lL-4jM">
-                                                <rect key="frame" x="255.33333333333334" y="142.66666666666663" width="123.6666666666666" height="41.666666666666657"/>
+                                                <rect key="frame" x="255.33333333333334" y="142.66666666666663" width="123.66666666666666" height="41.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                 <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1881,7 +1882,7 @@
         <!--Informacion View Controller-->
         <scene sceneID="DRY-NO-NzB">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="SRN-lC-wRd" customClass="InformacionViewController" customModule="OCTAVIO_QUINTO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InformacionViewController" modalPresentationStyle="fullScreen" id="SRN-lC-wRd" customClass="InformacionViewController" customModule="OCTAVIO_QUINTO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SeA-M1-9jx">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2001,6 +2002,9 @@
             <point key="canvasLocation" x="6080" y="257"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Jhw-OR-39d"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="carbon-monoxide.png" width="384" height="384"/>
         <image name="casco_ibañez.png" width="512" height="447"/>
