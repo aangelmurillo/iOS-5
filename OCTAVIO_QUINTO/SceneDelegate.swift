@@ -46,6 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Configura el primer UINavigationController
         let firstViewController = storyboard.instantiateViewController(withIdentifier: "ScrollViewUserSensorsViewController") as! ScrollViewUserSensorsViewController
+        firstViewController.tabIdentifier = 0 // Establece el identificador
         let firstNavController = UINavigationController(rootViewController: firstViewController)
         firstNavController.tabBarItem = UITabBarItem(title: "Sensores", image: UIImage(named: "list.png"), tag: 0)
         
@@ -56,6 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Configura el tercer UINavigationController
         let thirdViewController = storyboard.instantiateViewController(withIdentifier: "ScrollViewUserSensorsViewController") as! ScrollViewUserSensorsViewController
+        thirdViewController.tabIdentifier = 2 // Establece el identificador
         let thirdNavController = UINavigationController(rootViewController: thirdViewController)
         thirdNavController.tabBarItem = UITabBarItem(title: "Usuarios", image: UIImage(systemName: ""), tag: 2)
         

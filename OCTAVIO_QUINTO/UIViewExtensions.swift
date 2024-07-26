@@ -27,7 +27,7 @@ extension UILabel {
     func adjustFontSize() {
         let bounds = UIScreen.main.bounds
         let height = bounds.size.height
-        let scaleFactor = height / 800.0
+        let scaleFactor = height / 900.0
         self.font = self.font.withSize(self.font.pointSize * scaleFactor)
     }
 }

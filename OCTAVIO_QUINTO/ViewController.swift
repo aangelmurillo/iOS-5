@@ -10,8 +10,10 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var viewLogin: UIView!
     @IBOutlet weak var viewLogo: UIView!
-    @IBOutlet weak var btnIngresar: UIButton!
     @IBOutlet weak var lblBienvenido: UILabel!
+    @IBOutlet weak var btnIngresar: UIButton!
+    @IBOutlet weak var txfIdentificador: UITextField!
+    @IBOutlet weak var txfContraseña: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

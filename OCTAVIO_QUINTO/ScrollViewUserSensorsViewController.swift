@@ -1,4 +1,3 @@
-// ScrollViewUserSensorsViewController.swift
 import UIKit
 
 class ScrollViewUserSensorsViewController: UIViewController {
@@ -12,6 +11,7 @@ class ScrollViewUserSensorsViewController: UIViewController {
     }
     
     var actionType: ActionType?
+    var tabIdentifier: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,11 @@ class ScrollViewUserSensorsViewController: UIViewController {
         for i in 0..<numberOfUsers {
             let userView = UIView()
             userView.makeRoundView(cornerRadius: 10.0)
-            userView.backgroundColor = .systemMint
+            if tabIdentifier == 2 {
+                userView.backgroundColor = .systemYellow
+            } else {
+                userView.backgroundColor = .systemMint
+            }
             userView.translatesAutoresizingMaskIntoConstraints = false
             viewContent.addSubview(userView)
             
@@ -97,23 +101,46 @@ class ScrollViewUserSensorsViewController: UIViewController {
     
     @objc func buttonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let sensorsViewController = storyboard.instantiateViewController(withIdentifier: "SensorsViewController") as? SensorsViewController {
-            if let actionType = actionType {
-                switch actionType {
-                case .edit:
-                    // Lógica para editar
-                    print("Editar usuario \(sender.tag + 1)")
-                case .delete:
-                    // Lógica para eliminar
-                    print("Eliminar usuario \(sender.tag + 1)")
+        if let actionType = actionType {
+            switch actionType {
+            case .edit:
+                if let editarViewController = storyboard.instantiateViewController(withIdentifier: "EditarViewController") as? EditarViewController {
+                    navigationController?.pushViewController(editarViewController, animated: true)
                 }
-            } else {
-                // Acción predeterminada si no es eliminar o editar
-                if let navigationController = self.navigationController {
-                    navigationController.pushViewController(sensorsViewController, animated: true)
+            case .delete:
+                let alertController = UIAlertController(title: "Confirmar eliminación", message: "¿Estás seguro de que deseas eliminar al usuario \(sender.tag + 1)?", preferredStyle: .alert)
+                
+                let confirmAction = UIAlertAction(title: "Confirmar", style: .destructive) { _ in
+                    print("Usuario \(sender.tag + 1) eliminado")
+                }
+                let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+                
+                alertController.addAction(confirmAction)
+                alertController.addAction(cancelAction)
+                
+                present(alertController, animated: true, completion: nil)
+            }
+        } else {
+            // Acción predeterminada si no es eliminar o editar
+            if let navigationController = self.navigationController {
+                if let tabIdentifier = tabIdentifier {
+                    switch tabIdentifier {
+                    case 0:
+                        if let sensorsViewController = storyboard.instantiateViewController(withIdentifier: "SensorsViewController") as? SensorsViewController {
+                            navigationController.pushViewController(sensorsViewController, animated: true)
+                        }
+                    case 2:
+                        if let informacionViewController = storyboard.instantiateViewController(withIdentifier: "InformacionViewController") as? InformacionViewController {
+                            navigationController.pushViewController(informacionViewController, animated: true)
+                        }
+                    default:
+                        // Manejar otros casos si es necesario
+                        break
+                    }
                 }
             }
         }
     }
+
 
 }
