@@ -19,7 +19,6 @@
 		0D92F0B52C5031AC00D48171 /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AB2C5031AC00D48171 /* helmet.png */; };
 		0D92F0B62C5031AC00D48171 /* house-black-silhouette-without-door.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AC2C5031AC00D48171 /* house-black-silhouette-without-door.png */; };
 		0D92F0B72C5031AC00D48171 /* carbon-monoxide.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0AD2C5031AC00D48171 /* carbon-monoxide.png */; };
-		0D92F0B92C5031C600D48171 /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0B82C5031C600D48171 /* casco_ibañez.png */; };
 		0DBC8AC82C50497300DF602B /* EnvironmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC8AC72C50497300DF602B /* EnvironmentViewController.swift */; };
 		0DBC8ACB2C504E8000DF602B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBC8ACA2C504E8000DF602B /* MapKit.framework */; };
 		0DBC8ACD2C50751100DF602B /* RegistrarEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC8ACC2C50751100DF602B /* RegistrarEViewController.swift */; };
@@ -42,6 +41,8 @@
 		0DEFF70C2C22051600BD6AD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DEFF70A2C22051600BD6AD8 /* LaunchScreen.storyboard */; };
 		0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */; };
 		0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */; };
+		6E7D71262C59982C007C6BCC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7D71252C59982C007C6BCC /* ApiService.swift */; };
+		6E9887BB2C597A11005455F6 /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9887BA2C597A11005455F6 /* casco_ibañez.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +58,6 @@
 		0D92F0AB2C5031AC00D48171 /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
 		0D92F0AC2C5031AC00D48171 /* house-black-silhouette-without-door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house-black-silhouette-without-door.png"; sourceTree = "<group>"; };
 		0D92F0AD2C5031AC00D48171 /* carbon-monoxide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carbon-monoxide.png"; sourceTree = "<group>"; };
-		0D92F0B82C5031C600D48171 /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../../../../casco_ibañez.png"; sourceTree = "<group>"; };
 		0DBC8AC72C50497300DF602B /* EnvironmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewController.swift; sourceTree = "<group>"; };
 		0DBC8ACA2C504E8000DF602B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0DBC8ACC2C50751100DF602B /* RegistrarEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrarEViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +82,8 @@
 		0DEFF70D2C22051600BD6AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewUserSensorsViewController.swift; sourceTree = "<group>"; };
+		6E7D71252C59982C007C6BCC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		6E9887BA2C597A11005455F6 /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../../../../Downloads/casco_ibañez.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,7 @@
 		0D92F0A32C5031AC00D48171 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				0D92F0B82C5031C600D48171 /* casco_ibañez.png */,
+				6E9887BA2C597A11005455F6 /* casco_ibañez.png */,
 				0D92F0A42C5031AC00D48171 /* gps.png */,
 				0D92F0A52C5031AC00D48171 /* thermometer.png */,
 				0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */,
@@ -185,6 +187,7 @@
 			children = (
 				0D92F0A32C5031AC00D48171 /* resources */,
 				0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */,
+				6E7D71252C59982C007C6BCC /* ApiService.swift */,
 				0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */,
 				0DEFF7032C22051500BD6AD8 /* ViewController.swift */,
 				0DE8A0D82C54441600F9C42B /* Usuario.swift */,
@@ -265,7 +268,7 @@
 				0D92F0AE2C5031AC00D48171 /* gps.png in Resources */,
 				0DEFF70C2C22051600BD6AD8 /* LaunchScreen.storyboard in Resources */,
 				0D92F0B32C5031AC00D48171 /* list.png in Resources */,
-				0D92F0B92C5031C600D48171 /* casco_ibañez.png in Resources */,
+				6E9887BB2C597A11005455F6 /* casco_ibañez.png in Resources */,
 				0D92F0B22C5031AC00D48171 /* user.png in Resources */,
 				0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */,
 				0D92F0B72C5031AC00D48171 /* carbon-monoxide.png in Resources */,
@@ -290,6 +293,7 @@
 				0DBC8ACF2C50763600DF602B /* InformacionViewController.swift in Sources */,
 				0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */,
 				0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */,
+				6E7D71262C59982C007C6BCC /* ApiService.swift in Sources */,
 				0DC18A322C51788A0047B3C2 /* IngresarcViewController.swift in Sources */,
 				0DC18A2A2C51747A0047B3C2 /* EditarViewController.swift in Sources */,
 				0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */,

@@ -17,7 +17,27 @@ class ScrollViewUserSensorsViewController: UIViewController {
         super.viewDidLoad()
         setUpViewContent()
         addUserViews()
-        configureCustomNavigationBar(title: "Ing. Octavio", subtitle: "octavio@gmail.com")
+        
+        // Recuperar el userId de UserDefaults
+        if let userId = UserDefaults.standard.value(forKey: "userId") as? Int {
+            ApiService.shared.getUserInfo(userId: userId) { [weak self] result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let usuario):
+                        self?.configureCustomNavigationBar(title: usuario.userName, subtitle: usuario.email)
+                        // Guardar usuario en UserDefaults
+                        if let userData = try? JSONEncoder().encode(usuario) {
+                            UserDefaults.standard.set(userData, forKey: "loggedUser")
+                        }
+                    case .failure(let error):
+                        print("Error al obtener la información del usuario: \(error)")
+                        self?.configureCustomNavigationBar(title: "Usuario", subtitle: "email@dominio.com")
+                    }
+                }
+            }
+        } else {
+            print("Error: No se encontró el userId en UserDefaults")
+        }
     }
     
     func setUpViewContent() {
@@ -141,6 +161,5 @@ class ScrollViewUserSensorsViewController: UIViewController {
             }
         }
     }
-
 
 }

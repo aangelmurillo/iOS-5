@@ -1,10 +1,4 @@
-//
-//  Usuario.swift
-//  OCTAVIO_QUINTO
-//
-//  Created by Federico Mireles on 26/07/24.
-//
-
+// Usuario.swift
 import UIKit
 
 class Usuario: Codable {
@@ -34,5 +28,18 @@ class Usuario: Codable {
         self.verificate = verificate
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+    }
+    
+    static func from(json: [String: Any]) -> Usuario? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let user = try decoder.decode(Usuario.self, from: jsonData)
+            return user
+        } catch {
+            print("Error decoding JSON: \(error)")
+            return nil
+        }
     }
 }
