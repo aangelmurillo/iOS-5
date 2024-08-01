@@ -15,11 +15,11 @@ class EnvironmentViewController: UIViewController {
         for i in lblsEnv{
             i.adjustFontSize()
         }
-
-        // Do any additional setup after loading the view.
-        configureCenteredNavBar(title: "MURILLO", subtitle: "C000")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        fetchUserIdentifier()
+    }
 
     /*
     // MARK: - Navigation

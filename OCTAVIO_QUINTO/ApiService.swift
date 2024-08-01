@@ -63,7 +63,7 @@ class ApiService {
     // Método para obtener la información del usuario
     func fetchUserInfo(completion: @escaping (Result<User, Error>) -> Void) {
         guard let token = UserDefaults.standard.string(forKey: "authToken") else {
-            print("Token de autenticación no encontrado")
+            // print("Token de autenticación no encontrado")
             completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Token de autenticación no encontrado"])))
             return
         }
@@ -87,14 +87,14 @@ class ApiService {
             }
 
             guard let data = data else {
-                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos"])))
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos (FetchUserInfo)"])))
                 return
             }
             
             // Imprime los datos recibidos para depuración
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("Datos recibidos: \(jsonString)")
-            }
+            // if let jsonString = String(data: data, encoding: .utf8) {
+            //    print("Datos recibidos (FetchUserInfo): \(jsonString)")
+            //}
 
             do {
                 let decoder = JSONDecoder()
@@ -110,7 +110,7 @@ class ApiService {
     // Método para obtener todos los usuarios (exceptuando admin)
     func fetchAllUsers(completion: @escaping (Result<[User], Error>) -> Void) {
         guard let token = UserDefaults.standard.string(forKey: "authToken") else {
-            print("Token de autenticación no encontrado")
+            // print("Token de autenticación no encontrado")
             completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Token de autenticación no encontrado"])))
             return
         }
@@ -134,14 +134,14 @@ class ApiService {
             }
 
             guard let data = data else {
-                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos"])))
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos (FetchAllUsers)"])))
                 return
             }
             
             // Imprime los datos recibidos para depuración
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("Datos recibidos: \(jsonString)")
-            }
+            // if let jsonString = String(data: data, encoding: .utf8) {
+            //    print("Datos recibidos (FetchAllUsers): \(jsonString)")
+            //}
 
             do {
                 // Decodifica la respuesta como un arreglo de usuarios

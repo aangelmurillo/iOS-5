@@ -4,26 +4,27 @@ class ScrollViewUserSensorsViewController: UIViewController {
     @IBOutlet weak var scrUsersSensors: UIScrollView!
     
     private let viewContent = UIView()
+    private var users: [User] = [] // Agregamos una propiedad para almacenar la lista de usuarios
     
     enum ActionType {
         case edit
         case delete
     }
     
-    // Agrega estas propiedades
     var userName: String?
     var userEmail: String?
-    
     var actionType: ActionType?
     var tabIdentifier: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewContent()
-        addUserViews()
-                
-        fetchUserInfo()
-        fetchAllUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUserIdentifier()
+        fetchAllUsers() // Llama a fetchAllUsers cada vez que la vista aparece
     }
     
     func setUpViewContent() {
@@ -39,17 +40,16 @@ class ScrollViewUserSensorsViewController: UIViewController {
         ])
     }
     
-    func addUserViews() {
-        let numberOfUsers = 9
+    func addUserViews(users: [User]) {
+        self.users = users // Guardamos la lista de usuarios
         
-        for i in 0..<numberOfUsers {
+        // Limpia las vistas previas antes de agregar nuevas
+        viewContent.subviews.forEach { $0.removeFromSuperview() }
+        
+        for (i, user) in users.enumerated() {
             let userView = UIView()
             userView.makeRoundView(cornerRadius: 10.0)
-            if tabIdentifier == 2 {
-                userView.backgroundColor = .systemYellow
-            } else {
-                userView.backgroundColor = .systemMint
-            }
+            userView.backgroundColor = (tabIdentifier == 2) ? .systemYellow : .systemMint
             userView.translatesAutoresizingMaskIntoConstraints = false
             viewContent.addSubview(userView)
             
@@ -60,7 +60,7 @@ class ScrollViewUserSensorsViewController: UIViewController {
             userView.addSubview(imageView)
             
             let label = UILabel()
-            label.text = "User \(i + 1)"
+            label.text = user.user_name
             label.textAlignment = .center
             label.font = UIFont.systemFont(ofSize: 20.0, weight: .medium)
             label.textColor = .white
@@ -99,13 +99,16 @@ class ScrollViewUserSensorsViewController: UIViewController {
                 button.trailingAnchor.constraint(equalTo: userView.trailingAnchor)
             ])
             
-            if i == numberOfUsers - 1 {
+            if i == users.count - 1 {
                 userView.bottomAnchor.constraint(equalTo: viewContent.bottomAnchor, constant: -20).isActive = true
             }
         }
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
+        let selectedUser = users[sender.tag] // Obtén el usuario seleccionado
+        print("Usuario seleccionado: \(selectedUser.user_name), ID: \(selectedUser.id), Email: \(selectedUser.email), Helmet Serial Number: \(selectedUser.helmet.helmet_serial_number)")
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let actionType = actionType {
             switch actionType {
@@ -114,10 +117,10 @@ class ScrollViewUserSensorsViewController: UIViewController {
                     navigationController?.pushViewController(editarViewController, animated: true)
                 }
             case .delete:
-                let alertController = UIAlertController(title: "Confirmar eliminación", message: "¿Estás seguro de que deseas eliminar al usuario \(sender.tag + 1)?", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Confirmar eliminación", message: "¿Estás seguro de que deseas eliminar al usuario \(selectedUser.user_name)?", preferredStyle: .alert)
                 
                 let confirmAction = UIAlertAction(title: "Confirmar", style: .destructive) { _ in
-                    print("Usuario \(sender.tag + 1) eliminado")
+                    print("Usuario \(selectedUser.user_name) eliminado")
                 }
                 let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
                 
@@ -128,41 +131,35 @@ class ScrollViewUserSensorsViewController: UIViewController {
             }
         } else {
             // Acción predeterminada si no es eliminar o editar
-            if let navigationController = self.navigationController {
-                if let tabIdentifier = tabIdentifier {
-                    switch tabIdentifier {
-                    case 0:
-                        if let sensorsViewController = storyboard.instantiateViewController(withIdentifier: "SensorsViewController") as? SensorsViewController {
-                            navigationController.pushViewController(sensorsViewController, animated: true)
-                        }
-                    case 2:
-                        if let informacionViewController = storyboard.instantiateViewController(withIdentifier: "InformacionViewController") as? InformacionViewController {
-                            navigationController.pushViewController(informacionViewController, animated: true)
-                        }
-                    default:
-                        // Manejar otros casos si es necesario
-                        break
+            if let tabIdentifier = tabIdentifier {
+                switch tabIdentifier {
+                case 0:
+                    if let sensorsViewController = storyboard.instantiateViewController(withIdentifier: "SensorsViewController") as? SensorsViewController {
+                        sensorsViewController.selectedUser = selectedUser
+                        navigationController?.pushViewController(sensorsViewController, animated: true)
                     }
+                case 2:
+                    if let informacionViewController = storyboard.instantiateViewController(withIdentifier: "InformacionViewController") as? InformacionViewController {
+                        navigationController?.pushViewController(informacionViewController, animated: true)
+                    }
+                default:
+                    // Manejar otros casos si es necesario
+                    break
                 }
             }
         }
     }
     
-    func fetchUserInfo() {
-        ApiService.shared.fetchUserInfo { result in
+    func fetchAllUsers() {
+        ApiService.shared.fetchAllUsers { result in
             switch result {
-            case .success(let user):
-                print("Nombre de usuario: \(user.user_name)")
-                print("Correo electrónico: \(user.email)")
+            case .success(let users):
                 DispatchQueue.main.async {
-                    self.userName = user.user_name
-                    self.userEmail = user.email
-                    self.configureCenteredNavBar(title: user.user_name, subtitle: user.email)
+                    self.addUserViews(users: users)
                 }
             case .failure(let error):
-                print("Error al obtener la información del usuario: \(error.localizedDescription)")
+                print("Error al obtener la lista de usuarios (FetchAllUsers): \(error.localizedDescription)")
             }
         }
     }
-
 }

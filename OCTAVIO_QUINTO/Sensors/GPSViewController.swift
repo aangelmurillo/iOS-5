@@ -7,10 +7,12 @@ class GPSViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCenteredNavBar(title: "MURILLO", subtitle: "C000")
-
         // Configura el mapa
         configureMapView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchUserIdentifier()
     }
 
     private func configureMapView() {

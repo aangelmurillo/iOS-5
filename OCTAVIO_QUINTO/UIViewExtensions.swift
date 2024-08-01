@@ -107,6 +107,21 @@ extension UIViewController {
         // Configurar el titleView de la barra de navegación
         self.navigationItem.titleView = customTitleView
     }
+    
+    func fetchUserIdentifier() {
+        ApiService.shared.fetchUserInfo { result in
+            switch result {
+            case .success(let user):
+                // print("Nombre de usuario: \(user.user_name)")
+                // print("Correo electrónico: \(user.email)")
+                DispatchQueue.main.async {
+                    self.configureCenteredNavBar(title: user.user_name, subtitle: user.email)
+                }
+            case .failure(let error):
+                print("Error al obtener la información del usuario: \(error.localizedDescription)")
+            }
+        }
+    }
 
     func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alerta = UIAlertController(title: title, message: message, preferredStyle: .alert)

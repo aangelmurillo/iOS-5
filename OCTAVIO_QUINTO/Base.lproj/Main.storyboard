@@ -801,10 +801,10 @@
             </objects>
             <point key="canvasLocation" x="3963" y="4"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="2Gx-ng-JgN">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="5Cd-HO-gJr" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="5Cd-HO-gJr" customClass="CameraViewController" customModule="OCTAVIO_QUINTO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mIS-s5-lU9">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
