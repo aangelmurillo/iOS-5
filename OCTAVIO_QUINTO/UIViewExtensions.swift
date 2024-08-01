@@ -70,7 +70,7 @@ extension UIViewController {
         // Crear la vista personalizada para la barra de navegación
         let customTitleView = UIView()
         customTitleView.translatesAutoresizingMaskIntoConstraints = false
-        customTitleView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        customTitleView.widthAnchor.constraint(equalToConstant: 300).isActive = true
         // No fijar altura, dejar que se ajuste dinámicamente
 
         // Crear y configurar las etiquetas

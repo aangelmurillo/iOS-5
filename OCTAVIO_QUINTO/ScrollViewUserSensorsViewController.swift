@@ -10,6 +10,10 @@ class ScrollViewUserSensorsViewController: UIViewController {
         case delete
     }
     
+    // Agrega estas propiedades
+    var userName: String?
+    var userEmail: String?
+    
     var actionType: ActionType?
     var tabIdentifier: Int?
     
@@ -17,27 +21,9 @@ class ScrollViewUserSensorsViewController: UIViewController {
         super.viewDidLoad()
         setUpViewContent()
         addUserViews()
-        
-        // Recuperar el userId de UserDefaults
-        if let userId = UserDefaults.standard.value(forKey: "userId") as? Int {
-            ApiService.shared.getUserInfo(userId: userId) { [weak self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let usuario):
-                        self?.configureCustomNavigationBar(title: usuario.userName, subtitle: usuario.email)
-                        // Guardar usuario en UserDefaults
-                        if let userData = try? JSONEncoder().encode(usuario) {
-                            UserDefaults.standard.set(userData, forKey: "loggedUser")
-                        }
-                    case .failure(let error):
-                        print("Error al obtener la información del usuario: \(error)")
-                        self?.configureCustomNavigationBar(title: "Usuario", subtitle: "email@dominio.com")
-                    }
-                }
-            }
-        } else {
-            print("Error: No se encontró el userId en UserDefaults")
-        }
+                
+        fetchUserInfo()
+        fetchAllUsers()
     }
     
     func setUpViewContent() {
@@ -158,6 +144,23 @@ class ScrollViewUserSensorsViewController: UIViewController {
                         break
                     }
                 }
+            }
+        }
+    }
+    
+    func fetchUserInfo() {
+        ApiService.shared.fetchUserInfo { result in
+            switch result {
+            case .success(let user):
+                print("Nombre de usuario: \(user.user_name)")
+                print("Correo electrónico: \(user.email)")
+                DispatchQueue.main.async {
+                    self.userName = user.user_name
+                    self.userEmail = user.email
+                    self.configureCenteredNavBar(title: user.user_name, subtitle: user.email)
+                }
+            case .failure(let error):
+                print("Error al obtener la información del usuario: \(error.localizedDescription)")
             }
         }
     }

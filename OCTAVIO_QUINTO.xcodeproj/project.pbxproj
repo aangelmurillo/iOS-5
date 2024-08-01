@@ -32,7 +32,6 @@
 		0DC18A302C51775A0047B3C2 /* CambioContraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A2F2C51775A0047B3C2 /* CambioContraViewController.swift */; };
 		0DC18A322C51788A0047B3C2 /* IngresarcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A312C51788A0047B3C2 /* IngresarcViewController.swift */; };
 		0DC18A352C517D550047B3C2 /* CrudBtnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC18A342C517D550047B3C2 /* CrudBtnsViewController.swift */; };
-		0DE8A0D92C54441600F9C42B /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8A0D82C54441600F9C42B /* Usuario.swift */; };
 		0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */; };
 		0DEFF7022C22051500BD6AD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */; };
 		0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEFF7032C22051500BD6AD8 /* ViewController.swift */; };
@@ -43,6 +42,7 @@
 		0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */; };
 		6E7D71262C59982C007C6BCC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7D71252C59982C007C6BCC /* ApiService.swift */; };
 		6E9887BB2C597A11005455F6 /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9887BA2C597A11005455F6 /* casco_ibañez.png */; };
+		6EB863FA2C5ACA6E008E0C02 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB863F92C5ACA6E008E0C02 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +71,6 @@
 		0DC18A2F2C51775A0047B3C2 /* CambioContraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CambioContraViewController.swift; sourceTree = "<group>"; };
 		0DC18A312C51788A0047B3C2 /* IngresarcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngresarcViewController.swift; sourceTree = "<group>"; };
 		0DC18A342C517D550047B3C2 /* CrudBtnsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrudBtnsViewController.swift; sourceTree = "<group>"; };
-		0DE8A0D82C54441600F9C42B /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		0DEFF6FC2C22051500BD6AD8 /* OCTAVIO_QUINTO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCTAVIO_QUINTO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DEFF6FF2C22051500BD6AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewUserSensorsViewController.swift; sourceTree = "<group>"; };
 		6E7D71252C59982C007C6BCC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		6E9887BA2C597A11005455F6 /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../../../../Downloads/casco_ibañez.png"; sourceTree = "<group>"; };
+		6EB863F92C5ACA6E008E0C02 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +190,7 @@
 				6E7D71252C59982C007C6BCC /* ApiService.swift */,
 				0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */,
 				0DEFF7032C22051500BD6AD8 /* ViewController.swift */,
-				0DE8A0D82C54441600F9C42B /* Usuario.swift */,
+				6EB863F92C5ACA6E008E0C02 /* Models.swift */,
 				0DEFF7052C22051500BD6AD8 /* Main.storyboard */,
 				0DBC8AC62C5048E500DF602B /* Sensors */,
 				0DEFF7082C22051600BD6AD8 /* Assets.xcassets */,
@@ -294,10 +294,10 @@
 				0DEFF7042C22051500BD6AD8 /* ViewController.swift in Sources */,
 				0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */,
 				6E7D71262C59982C007C6BCC /* ApiService.swift in Sources */,
+				6EB863FA2C5ACA6E008E0C02 /* Models.swift in Sources */,
 				0DC18A322C51788A0047B3C2 /* IngresarcViewController.swift in Sources */,
 				0DC18A2A2C51747A0047B3C2 /* EditarViewController.swift in Sources */,
 				0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */,
-				0DE8A0D92C54441600F9C42B /* Usuario.swift in Sources */,
 				0DBDA3122C49C60A007F0D45 /* GPSViewController.swift in Sources */,
 				0D332F7C2C4098B6009AD721 /* SensorsViewController.swift in Sources */,
 				0DC18A302C51775A0047B3C2 /* CambioContraViewController.swift in Sources */,
