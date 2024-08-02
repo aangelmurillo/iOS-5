@@ -154,5 +154,69 @@ class ApiService {
         }
         task.resume()
     }
+    
+    func fetchSensorData(helmetId: String, sensorType: String, completion: @escaping (Result<SensorData, Error>) -> Void) {
+        guard let token = UserDefaults.standard.string(forKey: "authToken") else {
+            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Token de autenticación no encontrado"])))
+            return
+        }
+        
+        let url = URL(string: "http://3.138.244.45/helmets/sensor-data")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        let parameters: [String: Any] = ["helmet_id": helmetId, "sensor_type": sensorType]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Network error: \(error.localizedDescription)")
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                let errorMessage = "Respuesta no válida"
+                let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                print(errorMessage)
+                completion(.failure(error))
+                return
+            }
+            
+            print("HTTP Status Code: \(httpResponse.statusCode)")
+            
+            if httpResponse.statusCode != 200 {
+                let errorMessage = "Error en la solicitud. Código de estado: \(httpResponse.statusCode)"
+                if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                    print("Respuesta del servidor: \(responseString)")
+                }
+                let error = NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos (FetchSensorData)"])))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let sensorData = try decoder.decode(SensorData.self, from: data)
+                completion(.success(sensorData))
+            } catch {
+                print("Error al decodificar los datos: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
 
 }

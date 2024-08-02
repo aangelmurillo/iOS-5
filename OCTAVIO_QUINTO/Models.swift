@@ -74,4 +74,11 @@ struct User: Codable {
     let person: Person
 }
 
+struct SensorData: Codable {
+    let helmet_id: String
+    let sensor: String
+    let latest_value: Double
+    let timestamp: String
+}
+
 // Ya no necesitas la estructura UserInfoResponse.

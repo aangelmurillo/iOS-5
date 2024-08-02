@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D332F7C2C4098B6009AD721 /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */; };
-		0D6D539B2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */; };
 		0D92F0AE2C5031AC00D48171 /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A42C5031AC00D48171 /* gps.png */; };
 		0D92F0AF2C5031AC00D48171 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A52C5031AC00D48171 /* thermometer.png */; };
 		0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */; };
@@ -47,7 +46,6 @@
 
 /* Begin PBXFileReference section */
 		0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsViewController.swift; sourceTree = "<group>"; };
-		0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDismissableViewController.swift; sourceTree = "<group>"; };
 		0D92F0A42C5031AC00D48171 /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
 		0D92F0A52C5031AC00D48171 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
 		0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple-users-silhouette.png"; sourceTree = "<group>"; };
@@ -198,7 +196,6 @@
 				0DEFF70D2C22051600BD6AD8 /* Info.plist */,
 				0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */,
 				0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */,
-				0D6D539A2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift */,
 				0D1B011B2C51B8D000C8632E /* Infromation */,
 				0DC18A362C51B3260047B3C2 /* ChangePassword */,
 				0DC18A332C517CF00047B3C2 /* CRUD */,
@@ -305,7 +302,6 @@
 				0DEFF7022C22051500BD6AD8 /* SceneDelegate.swift in Sources */,
 				0DBDA3102C49C5F0007F0D45 /* TemperatureViewController.swift in Sources */,
 				0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */,
-				0D6D539B2C4AD4BA00A8F8D4 /* SwipeDismissableViewController.swift in Sources */,
 				0DC18A352C517D550047B3C2 /* CrudBtnsViewController.swift in Sources */,
 				0DBDA3142C49C626007F0D45 /* CameraViewController.swift in Sources */,
 				0DC18A282C5172F30047B3C2 /* RegistrarUserViewController.swift in Sources */,
