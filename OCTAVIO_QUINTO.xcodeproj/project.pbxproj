@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D332F7C2C4098B6009AD721 /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */; };
+		0D5EB76F2C613CC60085ABEB /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5EB76E2C613CC60085ABEB /* casco_ibañez.png */; };
 		0D92F0AE2C5031AC00D48171 /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A42C5031AC00D48171 /* gps.png */; };
 		0D92F0AF2C5031AC00D48171 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A52C5031AC00D48171 /* thermometer.png */; };
 		0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */; };
@@ -40,12 +41,12 @@
 		0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */; };
 		0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */; };
 		6E7D71262C59982C007C6BCC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7D71252C59982C007C6BCC /* ApiService.swift */; };
-		6E9887BB2C597A11005455F6 /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9887BA2C597A11005455F6 /* casco_ibañez.png */; };
 		6EB863FA2C5ACA6E008E0C02 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB863F92C5ACA6E008E0C02 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsViewController.swift; sourceTree = "<group>"; };
+		0D5EB76E2C613CC60085ABEB /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../Documents/resources/casco_ibañez.png"; sourceTree = "<group>"; };
 		0D92F0A42C5031AC00D48171 /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
 		0D92F0A52C5031AC00D48171 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
 		0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple-users-silhouette.png"; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewUserSensorsViewController.swift; sourceTree = "<group>"; };
 		6E7D71252C59982C007C6BCC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		6E9887BA2C597A11005455F6 /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../../../../Downloads/casco_ibañez.png"; sourceTree = "<group>"; };
 		6EB863F92C5ACA6E008E0C02 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,7 +107,6 @@
 		0D92F0A32C5031AC00D48171 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				6E9887BA2C597A11005455F6 /* casco_ibañez.png */,
 				0D92F0A42C5031AC00D48171 /* gps.png */,
 				0D92F0A52C5031AC00D48171 /* thermometer.png */,
 				0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */,
@@ -166,6 +165,7 @@
 		0DEFF6F32C22051500BD6AD8 = {
 			isa = PBXGroup;
 			children = (
+				0D5EB76E2C613CC60085ABEB /* casco_ibañez.png */,
 				0DEFF6FE2C22051500BD6AD8 /* OCTAVIO_QUINTO */,
 				0DEFF6FD2C22051500BD6AD8 /* Products */,
 				0DBC8AC92C504E8000DF602B /* Frameworks */,
@@ -189,13 +189,13 @@
 				0DEFF7012C22051500BD6AD8 /* SceneDelegate.swift */,
 				0DEFF7032C22051500BD6AD8 /* ViewController.swift */,
 				6EB863F92C5ACA6E008E0C02 /* Models.swift */,
+				0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */,
+				0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */,
 				0DEFF7052C22051500BD6AD8 /* Main.storyboard */,
-				0DBC8AC62C5048E500DF602B /* Sensors */,
 				0DEFF7082C22051600BD6AD8 /* Assets.xcassets */,
 				0DEFF70A2C22051600BD6AD8 /* LaunchScreen.storyboard */,
 				0DEFF70D2C22051600BD6AD8 /* Info.plist */,
-				0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */,
-				0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */,
+				0DBC8AC62C5048E500DF602B /* Sensors */,
 				0D1B011B2C51B8D000C8632E /* Infromation */,
 				0DC18A362C51B3260047B3C2 /* ChangePassword */,
 				0DC18A332C517CF00047B3C2 /* CRUD */,
@@ -265,7 +265,7 @@
 				0D92F0AE2C5031AC00D48171 /* gps.png in Resources */,
 				0DEFF70C2C22051600BD6AD8 /* LaunchScreen.storyboard in Resources */,
 				0D92F0B32C5031AC00D48171 /* list.png in Resources */,
-				6E9887BB2C597A11005455F6 /* casco_ibañez.png in Resources */,
+				0D5EB76F2C613CC60085ABEB /* casco_ibañez.png in Resources */,
 				0D92F0B22C5031AC00D48171 /* user.png in Resources */,
 				0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */,
 				0D92F0B72C5031AC00D48171 /* carbon-monoxide.png in Resources */,
