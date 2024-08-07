@@ -22,14 +22,16 @@ class GPSViewController: UIViewController {
         if let user = selectedUser {
             print("User Name: \(user.user_name)")
             print("User Email: \(user.email)")
-            print("Helmet Serial Number: \(user.helmet.helmet_serial_number)")
+            let serialNumber = user.helmet?.helmet_serial_number ?? "nil"
+            print("Helmet Serial Number: \(serialNumber)")
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let user = selectedUser {
-            configureCenteredNavBar(title: user.user_name, subtitle: user.helmet.helmet_serial_number)
+            let serialNumber = user.helmet?.helmet_serial_number ?? "nil"
+            configureCenteredNavBar(title: user.user_name, subtitle: serialNumber)
             
             // Realiza la primera petición inmediatamente
             fetchSensorDataForAllTypes()
@@ -58,7 +60,7 @@ class GPSViewController: UIViewController {
     }
     
     private func fetchSensorDataForAllTypes() {
-        guard let helmetId = selectedUser?.helmet.helmet_serial_number else { return }
+        guard let helmetId = selectedUser?.helmet?.helmet_serial_number else { return }
         let sensorTypes = ["gps-latitud", "gps-longitud", "altitud", "presion"]
         
         for sensorType in sensorTypes {
@@ -67,7 +69,7 @@ class GPSViewController: UIViewController {
     }
     
     private func fetchAndSetSensorData(sensorType: String) {
-        guard let helmetId = selectedUser?.helmet.helmet_serial_number else { return }
+        guard let helmetId = selectedUser?.helmet?.helmet_serial_number else { return }
         ApiService.shared.fetchSensorData(helmetId: helmetId, sensorType: sensorType) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {

@@ -21,8 +21,11 @@ class SensorsViewController: UIViewController {
         for view in viewsSensors {
             view.makeRoundView(cornerRadius: 10.0)
         }
+        
+        // Configura la barra de navegación con el nombre de usuario y el número de serie del casco, o "nil" si helmet es nil
         if let user = selectedUser {
-            configureCenteredNavBar(title: user.user_name, subtitle: user.helmet.helmet_serial_number)
+            let serialNumber = user.helmet?.helmet_serial_number ?? "nil"
+            configureCenteredNavBar(title: user.user_name, subtitle: serialNumber)
         }
     }
     

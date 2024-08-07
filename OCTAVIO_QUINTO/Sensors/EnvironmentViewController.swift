@@ -4,8 +4,10 @@ class EnvironmentViewController: UIViewController {
 
     @IBOutlet var lblsEnv: [UILabel]! // Usado para mostrar los valores de los sensores
     @IBOutlet var lblsEnvSensors: [UILabel]! // Usado para las etiquetas con tags del 0 al 2
-    @IBOutlet var viewsEnvSensors: [UIView]! // Asegúrate de conectar todas las vistas en el storyboard
-
+    @IBOutlet weak var viewGases: UIView!
+    @IBOutlet weak var viewTierra: UIView!
+    @IBOutlet weak var viewHumedad: UIView!
+    
     var selectedUser: User?
     var timer: Timer? // Timer para las peticiones
 
@@ -22,14 +24,16 @@ class EnvironmentViewController: UIViewController {
         if let user = selectedUser {
             print("User Name: \(user.user_name)")
             print("User Email: \(user.email)")
-            print("Helmet Serial Number: \(user.helmet.helmet_serial_number)")
+            let serialNumber = user.helmet?.helmet_serial_number ?? "nil"
+            print("Helmet Serial Number: \(serialNumber)")
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let user = selectedUser {
-            configureCenteredNavBar(title: user.user_name, subtitle: user.helmet.helmet_serial_number)
+            let serialNumber = user.helmet?.helmet_serial_number ?? "nil"
+            configureCenteredNavBar(title: user.user_name, subtitle: serialNumber)
             
             // Realiza la primera petición inmediatamente
             fetchSensorDataForAllTypes()
@@ -58,7 +62,7 @@ class EnvironmentViewController: UIViewController {
     }
 
     private func fetchSensorDataForAllTypes() {
-        guard let helmetId = selectedUser?.helmet.helmet_serial_number else { return }
+        guard let helmetId = selectedUser?.helmet?.helmet_serial_number else { return }
         let sensorTypes = ["mq2", "mq135", "fc28", "humedad"]
 
         for sensorType in sensorTypes {
@@ -84,28 +88,24 @@ class EnvironmentViewController: UIViewController {
         switch sensorType {
         case "mq2", "mq135":
             let show = value == 1
-            updateLabelTextAndColor(for: 0, text: show ? "Se han detectado gases peligrosos." : "No se detectan gases peligrosos.", color: show ? .systemRed : .systemGreen)
+            updateLabelTextAndColor(for: 0, text: show ? "Se han detectado gases peligrosos." : "No se detectan gases peligrosos.", color: show ? .systemRed : .systemGreen, view: viewGases)
         case "fc28":
-            updateLabelTextAndColor(for: 1, text: value == 1 ? "La tierra está peligrosamente húmeda." : "La tierra está en buen estado.", color: value == 1 ? .systemRed : .systemGreen)
+            updateLabelTextAndColor(for: 1, text: value == 1 ? "La tierra está peligrosamente húmeda." : "La tierra está en buen estado.", color: value == 1 ? .systemRed : .systemGreen, view: viewTierra)
         case "humedad":
             let humidityText = "El porcentaje de humedad es: \(Int(value))%"
-            updateLabelTextAndColor(for: 2, text: humidityText, color: getHumedadColor(value: value))
+            updateLabelTextAndColor(for: 2, text: humidityText, color: getHumedadColor(value: value), view: viewHumedad)
         default:
             break
         }
     }
 
-    private func updateLabelTextAndColor(for tag: Int, text: String, color: UIColor) {
+    private func updateLabelTextAndColor(for tag: Int, text: String, color: UIColor, view: UIView) {
         if let label = lblsEnvSensors.first(where: { $0.tag == tag }) {
             label.text = text
         } else {
             print("No label found with tag \(tag)")
         }
-        if let view = viewsEnvSensors.first(where: { $0.tag == tag }) {
-            view.backgroundColor = color
-        } else {
-            print("No view found with tag \(tag)")
-        }
+        view.backgroundColor = color
     }
 
     private func getHumedadColor(value: Double) -> UIColor {

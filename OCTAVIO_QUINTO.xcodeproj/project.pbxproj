@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D332F7C2C4098B6009AD721 /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */; };
-		0D5EB76F2C613CC60085ABEB /* casco_ibañez.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5EB76E2C613CC60085ABEB /* casco_ibañez.png */; };
 		0D92F0AE2C5031AC00D48171 /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A42C5031AC00D48171 /* gps.png */; };
 		0D92F0AF2C5031AC00D48171 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A52C5031AC00D48171 /* thermometer.png */; };
 		0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */; };
@@ -46,7 +45,6 @@
 
 /* Begin PBXFileReference section */
 		0D332F7B2C4098B6009AD721 /* SensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsViewController.swift; sourceTree = "<group>"; };
-		0D5EB76E2C613CC60085ABEB /* casco_ibañez.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "casco_ibañez.png"; path = "../Documents/resources/casco_ibañez.png"; sourceTree = "<group>"; };
 		0D92F0A42C5031AC00D48171 /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
 		0D92F0A52C5031AC00D48171 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
 		0D92F0A62C5031AC00D48171 /* multiple-users-silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple-users-silhouette.png"; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 		0DEFF6F32C22051500BD6AD8 = {
 			isa = PBXGroup;
 			children = (
-				0D5EB76E2C613CC60085ABEB /* casco_ibañez.png */,
 				0DEFF6FE2C22051500BD6AD8 /* OCTAVIO_QUINTO */,
 				0DEFF6FD2C22051500BD6AD8 /* Products */,
 				0DBC8AC92C504E8000DF602B /* Frameworks */,
@@ -265,7 +262,6 @@
 				0D92F0AE2C5031AC00D48171 /* gps.png in Resources */,
 				0DEFF70C2C22051600BD6AD8 /* LaunchScreen.storyboard in Resources */,
 				0D92F0B32C5031AC00D48171 /* list.png in Resources */,
-				0D5EB76F2C613CC60085ABEB /* casco_ibañez.png in Resources */,
 				0D92F0B22C5031AC00D48171 /* user.png in Resources */,
 				0D92F0B02C5031AC00D48171 /* multiple-users-silhouette.png in Resources */,
 				0D92F0B72C5031AC00D48171 /* carbon-monoxide.png in Resources */,

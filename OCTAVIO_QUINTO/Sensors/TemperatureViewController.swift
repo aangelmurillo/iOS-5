@@ -25,8 +25,12 @@ class TemperatureViewController: UIViewController {
     }
     
     private func setupView() {
-        guard let user = selectedUser else { return }
-        configureCenteredNavBar(title: user.user_name, subtitle: user.helmet.helmet_serial_number)
+        guard let user = selectedUser else {
+            configureCenteredNavBar(title: "Usuario no disponible", subtitle: "No disponible")
+            return
+        }
+        let serialNumber = user.helmet?.helmet_serial_number ?? "No disponible"
+        configureCenteredNavBar(title: user.user_name, subtitle: serialNumber)
     }
     
     private func startFetchingTemperatureData() {
@@ -43,8 +47,11 @@ class TemperatureViewController: UIViewController {
     }
     
     private func fetchTemperatureData() {
-        guard let user = selectedUser else { return }
-        ApiService.shared.fetchSensorData(helmetId: user.helmet.helmet_serial_number, sensorType: "temperatura") { [weak self] result in
+        guard let user = selectedUser, let helmetId = user.helmet?.helmet_serial_number else {
+            print("No se puede obtener los datos de temperatura. Usuario o casco no disponible.")
+            return
+        }
+        ApiService.shared.fetchSensorData(helmetId: helmetId, sensorType: "temperatura") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let sensorData):
