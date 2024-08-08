@@ -107,7 +107,7 @@ class ScrollViewUserSensorsViewController: UIViewController {
     
     @objc func buttonTapped(_ sender: UIButton) {
         let selectedUser = users[sender.tag] // Obtén el usuario seleccionado
-        print("Usuario seleccionado: \(selectedUser.user_name), ID: \(selectedUser.id), Email: \(selectedUser.email), Helmet Serial Number: \(selectedUser.helmet.helmet_serial_number)")
+        print("Usuario seleccionado: \(selectedUser.user_name), ID: \(selectedUser.id), Email: \(selectedUser.email), Helmet Serial Number: \(selectedUser.helmet!.helmet_serial_number)")
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let actionType = actionType {

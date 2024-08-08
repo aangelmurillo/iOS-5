@@ -15,10 +15,17 @@ class CrudBtnsViewController: UIViewController {
         BtnEli.makeRoundButton(cornerRadius: 5)
         BtnEdit.makeRoundButton(cornerRadius: 5)
         
-        configureCustomNavigationBar(title: "Ing. Octavio", subtitle: "octavio@gmail.com")
+        fetchUserIdentifier()
         
+        btnRE.addTarget(self, action: #selector(reBtnTapped), for: .touchUpInside)
         BtnEli.addTarget(self, action: #selector(eliminarBtnTapped), for: .touchUpInside)
         BtnEdit.addTarget(self, action: #selector(editarBtnTapped), for: .touchUpInside)
+    }
+    
+    @objc func reBtnTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "RegistrarEViewController")
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
     
     @objc func eliminarBtnTapped() {

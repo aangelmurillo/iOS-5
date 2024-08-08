@@ -22,11 +22,7 @@ class RegistrarUserViewController: UIViewController {
     }
     
     
-    @IBAction func crearNuevUsuario(_ sender: UIButton) {
-        showAlert(title: "Éxito", message: "Usuario creado con éxito") {
-            self.navigationController?.popToRootViewController(animated: true)
-        }
-    }
+    
     
     @IBAction func cancelarCrearUsuario(_ sender: UIButton) {
         self.navigationController?.popToRootViewController(animated: true)

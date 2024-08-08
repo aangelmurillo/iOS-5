@@ -64,13 +64,13 @@ struct User: Codable {
     let email: String
     let rol_id: Int
     let person_id: Int
-    let helmet_id: Int
+    let helmet_id: Int?
     let remember_me_token: String?
     let verification_code: String?
     let verificate: Int
     let created_at: String
     let updated_at: String
-    let helmet: Helmet
+    let helmet: Helmet?
     let person: Person
 }
 

@@ -60,7 +60,7 @@ class GPSViewController: UIViewController {
     }
     
     private func fetchSensorDataForAllTypes() {
-        guard let helmetId = selectedUser?.helmet?.helmet_serial_number else { return }
+        guard (selectedUser?.helmet?.helmet_serial_number) != nil else { return }
         let sensorTypes = ["gps-latitud", "gps-longitud", "altitud", "presion"]
         
         for sensorType in sensorTypes {

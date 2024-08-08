@@ -39,6 +39,9 @@
 		0DEFF70C2C22051600BD6AD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DEFF70A2C22051600BD6AD8 /* LaunchScreen.storyboard */; };
 		0DF8672E2C41A07600E5280B /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */; };
 		0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */; };
+		6E56A24C2C64081600290993 /* RegistrarDireccionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E56A24B2C64081600290993 /* RegistrarDireccionViewController.swift */; };
+		6E56A24E2C643D6E00290993 /* ButtonsDireccionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E56A24D2C643D6E00290993 /* ButtonsDireccionViewController.swift */; };
+		6E56A2502C643DEA00290993 /* ElegirDireccionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E56A24F2C643DEA00290993 /* ElegirDireccionViewController.swift */; };
 		6E7D71262C59982C007C6BCC /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7D71252C59982C007C6BCC /* ApiService.swift */; };
 		6EB863FA2C5ACA6E008E0C02 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB863F92C5ACA6E008E0C02 /* Models.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +81,9 @@
 		0DEFF70D2C22051600BD6AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DF8672D2C41A07600E5280B /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		0DF8672F2C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewUserSensorsViewController.swift; sourceTree = "<group>"; };
+		6E56A24B2C64081600290993 /* RegistrarDireccionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrarDireccionViewController.swift; sourceTree = "<group>"; };
+		6E56A24D2C643D6E00290993 /* ButtonsDireccionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsDireccionViewController.swift; sourceTree = "<group>"; };
+		6E56A24F2C643DEA00290993 /* ElegirDireccionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElegirDireccionViewController.swift; sourceTree = "<group>"; };
 		6E7D71252C59982C007C6BCC /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		6EB863F92C5ACA6E008E0C02 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +152,9 @@
 				0DC18A272C5172F30047B3C2 /* RegistrarUserViewController.swift */,
 				0DC18A292C51747A0047B3C2 /* EditarViewController.swift */,
 				0DC18A342C517D550047B3C2 /* CrudBtnsViewController.swift */,
+				6E56A24B2C64081600290993 /* RegistrarDireccionViewController.swift */,
+				6E56A24D2C643D6E00290993 /* ButtonsDireccionViewController.swift */,
+				6E56A24F2C643DEA00290993 /* ElegirDireccionViewController.swift */,
 			);
 			path = CRUD;
 			sourceTree = "<group>";
@@ -289,6 +298,7 @@
 				6E7D71262C59982C007C6BCC /* ApiService.swift in Sources */,
 				6EB863FA2C5ACA6E008E0C02 /* Models.swift in Sources */,
 				0DC18A322C51788A0047B3C2 /* IngresarcViewController.swift in Sources */,
+				6E56A2502C643DEA00290993 /* ElegirDireccionViewController.swift in Sources */,
 				0DC18A2A2C51747A0047B3C2 /* EditarViewController.swift in Sources */,
 				0DEFF7002C22051500BD6AD8 /* AppDelegate.swift in Sources */,
 				0DBDA3122C49C60A007F0D45 /* GPSViewController.swift in Sources */,
@@ -298,7 +308,9 @@
 				0DEFF7022C22051500BD6AD8 /* SceneDelegate.swift in Sources */,
 				0DBDA3102C49C5F0007F0D45 /* TemperatureViewController.swift in Sources */,
 				0DF867302C41C6FB00E5280B /* ScrollViewUserSensorsViewController.swift in Sources */,
+				6E56A24C2C64081600290993 /* RegistrarDireccionViewController.swift in Sources */,
 				0DC18A352C517D550047B3C2 /* CrudBtnsViewController.swift in Sources */,
+				6E56A24E2C643D6E00290993 /* ButtonsDireccionViewController.swift in Sources */,
 				0DBDA3142C49C626007F0D45 /* CameraViewController.swift in Sources */,
 				0DC18A282C5172F30047B3C2 /* RegistrarUserViewController.swift in Sources */,
 			);
