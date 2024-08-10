@@ -1,10 +1,3 @@
-//
-//  Models.swift
-//  OCTAVIO_QUINTO
-//
-//  Created by Adrian Gottfried on 31/07/24.
-//
-
 import Foundation
 
 struct LoginResponse: Codable {
@@ -81,4 +74,28 @@ struct SensorData: Codable {
     let timestamp: String
 }
 
-// Ya no necesitas la estructura UserInfoResponse.
+// Define la estructura de la respuesta
+struct StatsResponse: Codable {
+    let status: String
+    let data: StatsData
+}
+
+struct StatsData: Codable {
+    let temperatura: SensorStats
+    let presion: SensorStats
+    let altitud: SensorStats
+    let humedad: SensorStats
+    let hscr_04: SensorStats
+    let mq2: SensorCount
+    let mq135: SensorCount
+    let fc28: SensorCount
+}
+
+struct SensorStats: Codable {
+    let max: Double?
+    let min: Double?
+}
+
+struct SensorCount: Codable {
+    let count: Int
+}

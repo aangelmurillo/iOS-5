@@ -18,6 +18,9 @@ class CodigoViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         print("Email recibido: \(email ?? "No email")")
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
 
     private func setupView() {
@@ -78,9 +81,7 @@ class CodigoViewController: UIViewController {
             case .success(let message):
                 DispatchQueue.main.async {
                     self.verificationCode = verificationCode
-                    self.showAlert(title: "Éxito", message: message) {
-                        self.navigateToCambioContra()
-                    }
+                    self.navigateToCambioContra()
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

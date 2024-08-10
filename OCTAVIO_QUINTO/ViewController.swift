@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var viewLogin: UIView!
     @IBOutlet weak var viewLogo: UIView!
     @IBOutlet weak var lblBienvenido: UILabel!
@@ -12,6 +12,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         lblBienvenido.adjustFontSize()
         btnIngresar.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        
+        txfIdentificador.delegate = self
+        txfContraseña.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,5 +58,15 @@ class ViewController: UIViewController {
                 print("Error en la solicitud: \(error.localizedDescription)")
             }
         }
+    }
+    
+    // UITextFieldDelegate methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txfIdentificador {
+            txfContraseña.becomeFirstResponder()
+        } else if textField == txfContraseña {
+            loginTapped()
+        }
+        return true
     }
 }

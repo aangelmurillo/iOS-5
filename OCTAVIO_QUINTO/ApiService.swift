@@ -41,7 +41,7 @@ class ApiService {
         
         task.resume()
     }
-
+    
     // Actualizar contraseña
     func updatePassword(email: String, newPassword: String, verificationCode: String, completion: @escaping (Result<String, Error>) -> Void) {
         let url = URL(string: "http://3.138.244.45/password-update")!
@@ -56,18 +56,18 @@ class ApiService {
             completion(.failure(error))
             return
         }
-
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-
+            
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Respuesta inesperada del servidor."])))
                 return
             }
-
+            
             if httpResponse.statusCode != 200 {
                 let errorMessage = "Error en la solicitud: \(httpResponse.statusCode)"
                 if let data = data {
@@ -78,17 +78,17 @@ class ApiService {
                 }
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos."])))
                 return
             }
-
+            
             // Imprime los datos crudos para depuración
             if let rawData = String(data: data, encoding: .utf8) {
                 print("Datos crudos de la respuesta: \(rawData)")
             }
-
+            
             // Asume que la respuesta es una cadena simple
             let responseMessage = String(data: data, encoding: .utf8) ?? "Respuesta vacía"
             completion(.success(responseMessage))
@@ -143,7 +143,7 @@ class ApiService {
         
         task.resume()
     }
-
+    
     
     // Método para manejar el login
     func login(user: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -159,18 +159,18 @@ class ApiService {
             completion(.failure(error))
             return
         }
-
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-
+            
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Respuesta inesperada del servidor."])))
                 return
             }
-
+            
             if httpResponse.statusCode != 200 {
                 let errorMessage = "Error de autenticación: \(httpResponse.statusCode)"
                 if let data = data {
@@ -181,12 +181,12 @@ class ApiService {
                 }
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos."])))
                 return
             }
-
+            
             do {
                 let decoder = JSONDecoder()
                 let loginResponse = try decoder.decode(LoginResponse.self, from: data)
@@ -199,7 +199,7 @@ class ApiService {
         }
         task.resume()
     }
-
+    
     // Método para obtener la información del usuario
     func fetchUserInfo(completion: @escaping (Result<User, Error>) -> Void) {
         guard let token = UserDefaults.standard.string(forKey: "authToken") else {
@@ -217,24 +217,26 @@ class ApiService {
                 completion(.failure(error))
                 return
             }
-
+            
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 let errorMessage = "Error en la solicitud"
                 let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: errorMessage])
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos (FetchUserInfo)"])))
                 return
             }
             
             // Imprime los datos recibidos para depuración
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("Datos recibidos (FetchUserInfo): \(jsonString)")
-            }
-
+            /*
+             if let jsonString = String(data: data, encoding: .utf8) {
+             print("Datos recibidos (FetchUserInfo): \(jsonString)")
+             }
+             */
+            
             do {
                 let decoder = JSONDecoder()
                 let user = try decoder.decode(User.self, from: data)
@@ -246,7 +248,7 @@ class ApiService {
         }
         task.resume()
     }
-
+    
     // Método para obtener todos los usuarios (exceptuando admin)
     func fetchAllUsers(completion: @escaping (Result<[User], Error>) -> Void) {
         guard let token = UserDefaults.standard.string(forKey: "authToken") else {
@@ -264,28 +266,30 @@ class ApiService {
                 completion(.failure(error))
                 return
             }
-
+            
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 let errorMessage = "Error en la solicitud"
                 let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: errorMessage])
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos (FetchAllUsers)"])))
                 return
             }
             
             // Imprime los datos recibidos para depuración
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("Datos recibidos (FetchAllUsers): \(jsonString)")
-            }
-
+            /*
+             if let jsonString = String(data: data, encoding: .utf8) {
+             print("Datos recibidos (FetchAllUsers): \(jsonString)")
+             }
+             */
+            
             do {
                 let decoder = JSONDecoder()
                 let users = try decoder.decode([User].self, from: data)
-                print("Usuarios decodificados: \(users)") // Verifica los usuarios decodificados
+                // print("Usuarios decodificados: \(users)") // Verifica los usuarios decodificados
                 completion(.success(users))
             } catch {
                 print("Error al decodificar usuarios: \(error)") // Depura errores de decodificación
@@ -294,7 +298,7 @@ class ApiService {
         }
         task.resume()
     }
-
+    
     func fetchSensorData(helmetId: String, sensorType: String, completion: @escaping (Result<SensorData, Error>) -> Void) {
         guard let token = UserDefaults.standard.string(forKey: "authToken") else {
             completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Token de autenticación no encontrado"])))

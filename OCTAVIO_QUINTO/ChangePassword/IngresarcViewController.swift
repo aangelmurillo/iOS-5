@@ -1,6 +1,6 @@
 import UIKit
 
-class IngresarcViewController: UIViewController {
+class IngresarcViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txfEmail: UITextField!
     @IBOutlet weak var btnEnvi: UIButton!
     @IBOutlet weak var viewEm: UIView!
@@ -15,6 +15,16 @@ class IngresarcViewController: UIViewController {
         lblIngresar.adjustFontSize()
         btnEnvi.makeRoundButton(cornerRadius: 5)
         viewEm.makeRoundView(cornerRadius: 5)
+        
+        txfEmail.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Resetear la variable seguePerformed cuando la vista aparece
+        seguePerformed = false
     }
     
     @IBAction func enviarCodigo(_ sender: UIButton) {
@@ -55,5 +65,12 @@ class IngresarcViewController: UIViewController {
                 self?.btnEnvi.isEnabled = true
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txfEmail {
+            enviarCodigo(btnEnvi)
+        }
+        return true
     }
 }

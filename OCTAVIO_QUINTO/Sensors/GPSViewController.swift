@@ -116,7 +116,7 @@ class GPSViewController: UIViewController {
     }
 
     private func configureMapView(latitude: Double, longitude: Double) {
-        let coordinate = CLLocationCoordinate2D(latitude: -103.32102, longitude: 25.5320613)
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
         

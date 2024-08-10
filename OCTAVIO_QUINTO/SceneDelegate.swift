@@ -59,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let thirdViewController = storyboard.instantiateViewController(withIdentifier: "ScrollViewUserSensorsViewController") as! ScrollViewUserSensorsViewController
         thirdViewController.tabIdentifier = 2 // Establece el identificador
         let thirdNavController = UINavigationController(rootViewController: thirdViewController)
-        thirdNavController.tabBarItem = UITabBarItem(title: "Usuarios", image: UIImage(systemName: ""), tag: 2)
+        thirdNavController.tabBarItem = UITabBarItem(title: "Información", image: UIImage(systemName: ""), tag: 2)
         
         // Configura UITabBarController
         let tabBarController = UITabBarController()

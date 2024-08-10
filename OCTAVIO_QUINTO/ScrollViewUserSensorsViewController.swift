@@ -139,8 +139,9 @@ class ScrollViewUserSensorsViewController: UIViewController {
                         navigationController?.pushViewController(sensorsViewController, animated: true)
                     }
                 case 2:
-                    if let informacionViewController = storyboard.instantiateViewController(withIdentifier: "InformacionViewController") as? InformacionViewController {
-                        navigationController?.pushViewController(informacionViewController, animated: true)
+                    if let infoButtonsViewController = storyboard.instantiateViewController(withIdentifier: "InfoButtonsViewController") as? InfoButtonsViewController {
+                        infoButtonsViewController.selectedUser = selectedUser
+                        navigationController?.pushViewController(infoButtonsViewController, animated: true)
                     }
                 default:
                     // Manejar otros casos si es necesario
