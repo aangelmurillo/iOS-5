@@ -28,7 +28,7 @@ struct Address: Codable {
     let id: Int
     let address_street: String
     let address_exterior_number: String
-    let address_interior_number: String
+    let address_interior_number: String?
     let address_neighborhood: String
     let address_zip_code: String
     let address_city: String
@@ -49,6 +49,14 @@ struct Person: Codable {
     let created_at: String
     let updated_at: String
     let addresses: [Address]
+}
+
+struct PersonRequestBody: Codable {
+    let person_name: String
+    let person_last_name: String
+    let person_second_last_name: String
+    let person_curp: String
+    let person_phone_number: String
 }
 
 struct User: Codable {
@@ -74,28 +82,29 @@ struct SensorData: Codable {
     let timestamp: String
 }
 
-// Define la estructura de la respuesta
-struct StatsResponse: Codable {
+// ---
+
+struct PersonalHelmetStatsResponse: Codable {
     let status: String
-    let data: StatsData
+    let data: Stats
 }
 
-struct StatsData: Codable {
-    let temperatura: SensorStats
-    let presion: SensorStats
-    let altitud: SensorStats
-    let humedad: SensorStats
-    let hscr_04: SensorStats
-    let mq2: SensorCount
-    let mq135: SensorCount
-    let fc28: SensorCount
+struct Stats: Codable {
+    let temperatura: StatDetail
+    let presion: StatDetail
+    let altitud: StatDetail
+    let humedad: StatDetail
+    let hscr_04: StatDetail
+    let mq2: StatCount
+    let mq135: StatCount
+    let fc28: StatCount
 }
 
-struct SensorStats: Codable {
+struct StatDetail: Codable {
     let max: Double?
     let min: Double?
 }
 
-struct SensorCount: Codable {
+struct StatCount: Codable {
     let count: Int
 }

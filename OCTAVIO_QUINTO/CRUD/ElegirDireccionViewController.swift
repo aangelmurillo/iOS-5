@@ -9,10 +9,18 @@ import UIKit
 
 class ElegirDireccionViewController: UIViewController {
 
+    var personData: [String: Any]?
+    var userDictionary: [String: Any]?
+    var helmetDictionary: [String: Any]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        fetchUserIdentifier()
         // Do any additional setup after loading the view.
+        print(personData ?? "No se encontró nada de personData")
+        print(userDictionary ?? "No se encontró nada de userDictionary")
+        print(helmetDictionary ?? "No se encontró nada de helmetDictionary")
+
     }
     
 

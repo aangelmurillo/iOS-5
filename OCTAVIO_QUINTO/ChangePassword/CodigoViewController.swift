@@ -78,7 +78,7 @@ class CodigoViewController: UIViewController {
 
         ApiService.shared.verifyCode(email: email, verificationCode: verificationCode) { result in
             switch result {
-            case .success(let message):
+            case .success(_):
                 DispatchQueue.main.async {
                     self.verificationCode = verificationCode
                     self.navigateToCambioContra()

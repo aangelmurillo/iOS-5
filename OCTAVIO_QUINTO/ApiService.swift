@@ -362,6 +362,205 @@ class ApiService {
         }
         task.resume()
     }
+    
+    func fetchPersonalHelmetStats(date: String, helmetID: String, completion: @escaping (PersonalHelmetStatsResponse?) -> Void) {
+        // Configura la URL de la API
+        guard let url = URL(string: "http://3.138.244.45/personalHelmetStats") else {
+            print("URL inválida")
+            completion(nil)
+            return
+        }
+
+        // Recupera el token de UserDefaults
+        guard let token = UserDefaults.standard.string(forKey: "authToken") else {
+            print("Token no disponible")
+            completion(nil)
+            return
+        }
+
+        // Configura la solicitud HTTP
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        // Datos a enviar en el cuerpo de la solicitud
+        let body: [String: Any] = ["date": date, "helmet_id": helmetID]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+        } catch {
+            print("Error al serializar el cuerpo de la solicitud: \(error.localizedDescription)")
+            completion(nil)
+            return
+        }
+
+        // Realiza la solicitud
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error en la solicitud: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else {
+                print("Datos vacíos en la respuesta")
+                completion(nil)
+                return
+            }
+            
+            // Imprimir JSON recibido para depuración
+            /*
+            if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+                print("JSON recibido: \(json)")
+            } else {
+                print("No se pudo serializar el JSON recibido")
+            }
+            */
+
+            do {
+                // Decodifica la respuesta JSON
+                let decodedResponse = try JSONDecoder().decode(PersonalHelmetStatsResponse.self, from: data)
+                // print("Respuesta de la API: \(decodedResponse)")
+                completion(decodedResponse)
+            } catch {
+                print("Error al decodificar la respuesta JSON: \(error.localizedDescription)")
+                completion(nil)
+            }
+        }
+
+        task.resume()
+    }
+
+    func postPersonData(personData: [String: Any], completion: @escaping (Result<Person, Error>) -> Void) {
+        // URL de la API
+        guard let url = URL(string: "http://3.138.244.45/people") else {
+            print("URL inválida")
+            return
+        }
+        
+        // Crear la solicitud
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Convertir el diccionario a JSON
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: personData, options: [])
+            request.httpBody = jsonData
+        } catch {
+            print("Error al convertir el diccionario a JSON: \(error.localizedDescription)")
+            return
+        }
+        
+        // Ejecutar la solicitud
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                print("No se recibió datos de la respuesta")
+                return
+            }
+            
+            // Decodificar la respuesta
+            do {
+                let personResponse = try JSONDecoder().decode(Person.self, from: data)
+                completion(.success(personResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func postAddressData(addressData: [String: Any], completion: @escaping (Result<Address, Error>) -> Void) {
+        // URL de la API
+        guard let url = URL(string: "http://3.138.244.45/addresses") else {
+            print("URL inválida")
+            return
+        }
+        
+        // Crear la solicitud
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Convertir el diccionario a JSON
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: addressData, options: [])
+            request.httpBody = jsonData
+        } catch {
+            print("Error al convertir el diccionario a JSON: \(error.localizedDescription)")
+            return
+        }
+        
+        // Ejecutar la solicitud
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                print("No se recibió datos de la respuesta")
+                return
+            }
+            
+            // Decodificar la respuesta
+            do {
+                let addressResponse = try JSONDecoder().decode(Address.self, from: data)
+                completion(.success(addressResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func postHelmetData(helmetDictionary: [String: Any], completion: @escaping (Result<Helmet, Error>) -> Void) {
+        // URL de la API
+        guard let url = URL(string: "http://3.138.244.45/helmets") else {
+            print("URL inválida")
+            return
+        }
+        
+        // Crear la solicitud
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Convertir el diccionario a JSON
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: helmetDictionary, options: [])
+            request.httpBody = jsonData
+        } catch {
+            print("Error al convertir el diccionario a JSON: \(error.localizedDescription)")
+            return
+        }
+        
+        // Ejecutar la solicitud
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                print("No se recibió datos de la respuesta")
+                return
+            }
+            
+            // Decodificar la respuesta
+            do {
+                let helmetResponse = try JSONDecoder().decode(Helmet.self, from: data)
+                completion(.success(helmetResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
 }
 
 // Estructura de error personalizada
