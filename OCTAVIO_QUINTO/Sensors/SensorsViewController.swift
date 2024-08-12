@@ -5,6 +5,7 @@ class SensorsViewController: UIViewController {
     @IBOutlet var viewsSensors: [UIView]!
     
     var selectedUser: User?
+    var userRole: Int? // Variable para almacenar el valor del rol del usuario
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +22,8 @@ class SensorsViewController: UIViewController {
         for view in viewsSensors {
             view.makeRoundView(cornerRadius: 10.0)
         }
-        
-        // Configura la barra de navegación con el nombre de usuario y el número de serie del casco, o "nil" si helmet es nil
-        if let user = selectedUser {
-            let serialNumber = user.helmet?.helmet_serial_number ?? "nil"
-            configureCenteredNavBar(title: user.user_name, subtitle: serialNumber)
-        }
+        print(selectedUser ?? "No se seleccionó")
+        fetchUserInfo()
     }
     
     @objc func handleButtonTap(_ sender: UIButton) {
@@ -57,6 +54,28 @@ class SensorsViewController: UIViewController {
             navigationController?.pushViewController(viewController, animated: true)
         } else {
             print("View controller with identifier \(viewControllerIdentifier) not found or does not conform to UserReceivable protocol")
+        }
+    }
+    
+    func fetchUserInfo() {
+        ApiService.shared.fetchUserInfo { [weak self] result in
+            switch result {
+            case .success(let user):
+                DispatchQueue.main.async {
+                    self?.userRole = user.rol_id
+                    
+                    // Configurar la barra de navegación basada en el role_id
+                    if user.rol_id == 2 {
+                        self?.selectedUser = user
+                        self?.configureCenteredNavBar(title: user.user_name, subtitle: user.helmet?.helmet_serial_number ?? "Casco no encontrado")
+                    } else {
+                        self?.configureCenteredNavBar(title: self?.selectedUser?.user_name ?? "Nombre no encontrado", subtitle: self?.selectedUser?.email ?? "Email no encontrado")
+                    }
+                    
+                }
+            case .failure(let error):
+                print("Error al obtener la información del usuario: \(error.localizedDescription)")
+            }
         }
     }
 }

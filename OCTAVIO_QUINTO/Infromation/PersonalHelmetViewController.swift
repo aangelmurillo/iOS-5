@@ -27,9 +27,6 @@ class PersonalHelmetViewController: UIViewController {
         
         // Ajusta el tamaño de la fuente de todos los labels
         adjustAllLabelFonts()
-        
-        // Inicializa la vista con la fecha actual
-        updateStatsForDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +37,9 @@ class PersonalHelmetViewController: UIViewController {
         }
         
         dpkFecha.maximumDate = Date()
+        
+        // Inicializa la vista con la fecha actual
+        updateStatsForDate()
     }
     
     @objc func dateChanged(_ sender: UIDatePicker) {
@@ -55,7 +55,8 @@ class PersonalHelmetViewController: UIViewController {
     func updateStatsForDate() {
         let dateString = formatDatePickerDate(dpkFecha.date)
         let helmetID = selectedUser?.helmet?.helmet_serial_number ?? "No se encuentra"
-        
+        print("Fecha: \(dateString)")
+        print("Fecha: \(dateString)")
         ApiService.shared.fetchPersonalHelmetStats(date: dateString, helmetID: helmetID) { response in
             DispatchQueue.main.async {
                 if let response = response {
@@ -64,6 +65,14 @@ class PersonalHelmetViewController: UIViewController {
                     self.updateLabels(with: response.data)
                 } else {
                     print("No se pudo obtener la respuesta de la API")
+                    self.lblTemperaturaMax.text = "Valores no existentes"
+                    self.lblPresionMax.text = "Valores no existentes"
+                    self.lblHumedadMax.text = "Valores no existentes"
+                    self.lblAltitudMax.text = "Valores no existentes"
+                    self.lblTemperaturaMin.text = "Valores no existentes"
+                    self.lblPresionMin.text = "Valores no existentes"
+                    self.lblHumedadMin.text = "Valores no existentes"
+                    self.lblAltitudMin.text = "Valores no existentes"
                 }
             }
         }

@@ -11,18 +11,16 @@ class RegistrarDireccionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txfEstado: UITextField!
     @IBOutlet weak var txfPais: UITextField!
     
-    var personData: [String: Any]?
-    var userDictionary: [String: Any]?
-    var helmetDictionary: [String: Any]?
+    var personData: PersonResponse?
+    var user: UserResponse?
+    var helmet: Helmet?
     
-    // Define addressData como una propiedad de la clase
     var addressData: [String: Any]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUserIdentifier()
         
-        // Asignar delegados
         [txfCalle, txfNumExterior, txfNumInt, txfCP, txfColonia, txfCiudad, txfEstado, txfPais].forEach {
             $0?.delegate = self
             $0?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -30,7 +28,6 @@ class RegistrarDireccionViewController: UIViewController, UITextFieldDelegate {
         
         btnCrearUsuario.alpha = 0.5
         
-        // Cerrar el teclado al tocar fuera de los campos de texto
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
@@ -62,60 +59,60 @@ class RegistrarDireccionViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkFields() {
-        // Verificar que todos los campos necesarios estén llenos, excepto txfNumInt
         let fields = [txfCalle, txfNumExterior, txfCP, txfColonia, txfCiudad, txfEstado, txfPais]
         let allFieldsFilled = fields.allSatisfy { $0?.text?.isEmpty == false }
         
-        // Habilitar el botón si todos los campos necesarios están llenos
         btnCrearUsuario.isEnabled = allFieldsFilled
         btnCrearUsuario.alpha = allFieldsFilled ? 1.0 : 0.5
     }
     
     @IBAction func crearNuevUsuario(_ sender: UIButton) {
-        // Verificar si `personData` está presente
         guard let personData = personData else {
             print("Datos de la persona no encontrados")
             return
         }
         
-        // Crear la persona y obtener el ID
-        ApiService.shared.postPersonData(personData: personData) { result in
-            switch result {
-            case .success(let personResponse):
-                // Extraer el ID de la respuesta
-                let personId = personResponse.id
-                
-                // Actualizar addressData con el ID de la persona
-                self.addressData = [
-                    "address_street": self.txfCalle.text ?? "",
-                    "address_exterior_number": self.txfNumExterior.text ?? "",
-                    "address_interior_number": self.txfNumInt.text?.isEmpty ?? true ? NSNull() : self.txfNumInt.text!,
-                    "address_neighborhood": self.txfColonia.text ?? "",
-                    "address_zip_code": self.txfCP.text ?? "",
-                    "address_city": self.txfCiudad.text ?? "",
-                    "address_state": self.txfEstado.text ?? "",
-                    "address_country": self.txfPais.text ?? "",
-                    "address_references": "", // Puedes agregar una referencia si es necesario
-                    "person_id": personId // Usar el ID de la persona creada
-                ]
-                
-                // Imprimir el diccionario para verificar el contenido
-                print("Datos de la dirección actualizados:", self.addressData ?? [:])
-                
-                // Llamar al método postAddressData para enviar la dirección
-                if let addressData = self.addressData {
-                    ApiService.shared.postAddressData(addressData: addressData) { result in
-                        switch result {
-                        case .success(let addressResponse):
-                            print("Dirección creada con éxito: \(addressResponse)")
-                        case .failure(let error):
-                            print("No se pudo crear la dirección: \(error.localizedDescription)")
+        // Crear el diccionario con los datos de la dirección
+        addressData = [
+            "address_street": txfCalle.text ?? "",
+            "address_exterior_number": txfNumExterior.text ?? "",
+            "address_interior_number": txfNumInt.text?.isEmpty ?? true ? NSNull() : txfNumInt.text!,
+            "address_neighborhood": txfColonia.text ?? "",
+            "address_zip_code": txfCP.text ?? "",
+            "address_city": txfCiudad.text ?? "",
+            "address_state": txfEstado.text ?? "",
+            "address_country": txfPais.text ?? "",
+            "address_references": "",
+            "person_id": personData.id
+        ]
+        
+        if let addressData = self.addressData {
+            ApiService.shared.postAddressData(addressData: addressData) { result in
+                switch result {
+                case .success(let addressResponse):
+                    print("Dirección creada con éxito: \(addressResponse)")
+                    
+                    // Luego de crear la dirección, envía el código de verificación
+                    if let user = self.user {
+                        ApiService.shared.sendVerificationCode(email: user.email) { result in
+                            switch result {
+                            case .success(let verificationResponse):
+                                print("Código de verificación enviado con éxito: \(verificationResponse)")
+                                DispatchQueue.main.async {
+                                    if let verificacionVC = self.storyboard?.instantiateViewController(withIdentifier: "VerificacionViewController") as? VerificacionViewController {
+                                        verificacionVC.userResponse = user
+                                        self.navigationController?.pushViewController(verificacionVC, animated: true)
+                                    }
+                                }
+                            case .failure(let error):
+                                print("No se pudo enviar el código de verificación: \(error.localizedDescription)")
+                            }
                         }
                     }
+                    
+                case .failure(let error):
+                    print("No se pudo crear la dirección: \(error.localizedDescription)")
                 }
-                
-            case .failure(let error):
-                print("No se pudo crear el usuario: \(error.localizedDescription)")
             }
         }
     }

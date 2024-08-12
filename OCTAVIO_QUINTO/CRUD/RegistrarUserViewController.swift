@@ -12,7 +12,7 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var segRol: UISegmentedControl!
     @IBOutlet weak var txfCasco: UITextField!
 
-    var personData: [String: Any]?
+    var personData: PersonResponse? // Recibir el objeto PersonResponse
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,6 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
         btnAceptar.makeRoundButton(cornerRadius: 5.0)
         viewR.makeRoundView(cornerRadius: 5)
         fetchUserIdentifier()
-        print(personData ?? "No se encontró nada de personData")
 
         // Configurar delegados
         txfUsername.delegate = self
@@ -78,20 +77,18 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func btnAceptarTapped(_ sender: UIButton) {
         if let errorMessage = validateFields() {
-            showAlert(title:"ERROR" ,message: errorMessage)
+            showAlert(title: "ERROR", message: errorMessage)
         } else {
-            // Crear el diccionario con los campos de la estructura User
             let userDictionary: [String: Any] = [
                 "user_name": txfUsername.text ?? "",
                 "email": txfEmail.text ?? "",
                 "password": txfPassword.text ?? "",
                 "rol_id": segRol.selectedSegmentIndex == 0 ? 1 : 2,
-                "helmet_id": segRol.selectedSegmentIndex == 0 ? NSNull() : txfCasco.text!
+                "helmet_id": segRol.selectedSegmentIndex == 0 ? NSNull() : txfCasco.text!,
+                "person_id": personData?.id ?? 0
             ]
             
-            // Verificar si helmet_serial_number es válido
             let helmetSerialNumber = segRol.selectedSegmentIndex == 0 ? nil : txfCasco.text?.isEmpty == false ? txfCasco.text : nil
-            
             var helmetDictionary: [String: String]? = nil
             if let serialNumber = helmetSerialNumber {
                 helmetDictionary = [
@@ -99,17 +96,59 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
                 ]
             }
             
-            // Aquí puedes usar `userDictionary` y `helmetDictionary` para lo que necesites, por ejemplo, enviar a un servidor
-            print(userDictionary)
             if let helmetDict = helmetDictionary {
-                print(helmetDict)
-            }
-            
-            // Navegar a la siguiente vista si es necesario
-            if let buttonsDireccionViewController = storyboard?.instantiateViewController(withIdentifier: "ButtonsDireccionViewController") as? ButtonsDireccionViewController {
-                buttonsDireccionViewController.userDictionary = userDictionary
-                buttonsDireccionViewController.helmetDictionary = helmetDictionary
-                navigationController?.pushViewController(buttonsDireccionViewController, animated: true)
+                ApiService.shared.postHelmetData(helmetDictionary: helmetDict) { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let helmetResponse):
+                            print("Casco creado con éxito: \(helmetResponse)")
+                            
+                            var updatedUserDictionary = userDictionary
+                            updatedUserDictionary["helmet_id"] = helmetResponse.id
+                            
+                            ApiService.shared.postUserData(userDictionary: updatedUserDictionary) { result in
+                                DispatchQueue.main.async {
+                                    switch result {
+                                    case .success(let userResponse):
+                                        print("Usuario creado con éxito: \(userResponse)")
+                                        
+                                        if let registrarDireccionViewController = self.storyboard?.instantiateViewController(withIdentifier: "RegistrarDireccionViewController") as? RegistrarDireccionViewController {
+                                            registrarDireccionViewController.user = userResponse
+                                            registrarDireccionViewController.helmet = helmetResponse
+                                            registrarDireccionViewController.personData = self.personData
+                                            self.navigationController?.pushViewController(registrarDireccionViewController, animated: true)
+                                        } else {
+                                            print("No se pudo instanciar RegistrarDireccionViewController")
+                                        }
+                                    case .failure(let error):
+                                        print("No se pudo crear el usuario: \(error.localizedDescription)")
+                                    }
+                                }
+                            }
+                        case .failure(let error):
+                            print("No se pudo crear el casco: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            } else {
+                ApiService.shared.postUserData(userDictionary: userDictionary) { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let userResponse):
+                            print("Usuario creado con éxito: \(userResponse)")
+                            
+                            if let registrarDireccionViewController = self.storyboard?.instantiateViewController(withIdentifier: "RegistrarDireccionViewController") as? RegistrarDireccionViewController {
+                                registrarDireccionViewController.user = userResponse
+                                registrarDireccionViewController.personData = self.personData
+                                self.navigationController?.pushViewController(registrarDireccionViewController, animated: true)
+                            } else {
+                                print("No se pudo instanciar RegistrarDireccionViewController")
+                            }
+                        case .failure(let error):
+                            print("No se pudo crear el usuario: \(error.localizedDescription)")
+                        }
+                    }
+                }
             }
         }
     }

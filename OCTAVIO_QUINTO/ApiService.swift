@@ -410,13 +410,13 @@ class ApiService {
             }
             
             // Imprimir JSON recibido para depuración
-            /*
+            
             if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
                 print("JSON recibido: \(json)")
             } else {
                 print("No se pudo serializar el JSON recibido")
             }
-            */
+            
 
             do {
                 // Decodifica la respuesta JSON
@@ -432,7 +432,7 @@ class ApiService {
         task.resume()
     }
 
-    func postPersonData(personData: [String: Any], completion: @escaping (Result<Person, Error>) -> Void) {
+    func postPersonData(personData: [String: Any], completion: @escaping (Result<PersonResponse, Error>) -> Void) {
         // URL de la API
         guard let url = URL(string: "http://3.138.244.45/people") else {
             print("URL inválida")
@@ -465,58 +465,68 @@ class ApiService {
                 return
             }
             
+            // Imprimir datos crudos para depuración
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("Respuesta JSON: \(jsonString)")
+            }
+            
             // Decodificar la respuesta
             do {
-                let personResponse = try JSONDecoder().decode(Person.self, from: data)
+                let personResponse = try JSONDecoder().decode(PersonResponse.self, from: data)
                 completion(.success(personResponse))
             } catch {
                 completion(.failure(error))
             }
         }.resume()
     }
-    
-    func postAddressData(addressData: [String: Any], completion: @escaping (Result<Address, Error>) -> Void) {
-        // URL de la API
-        guard let url = URL(string: "http://3.138.244.45/addresses") else {
-            print("URL inválida")
-            return
-        }
-        
-        // Crear la solicitud
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        // Convertir el diccionario a JSON
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: addressData, options: [])
-            request.httpBody = jsonData
-        } catch {
-            print("Error al convertir el diccionario a JSON: \(error.localizedDescription)")
-            return
-        }
-        
-        // Ejecutar la solicitud
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
+
+        func postAddressData(addressData: [String: Any], completion: @escaping (Result<Address, Error>) -> Void) {
+            // URL de la API
+            guard let url = URL(string: "http://3.138.244.45/addresses") else {
+                print("URL inválida")
                 return
             }
             
-            guard let data = data else {
-                print("No se recibió datos de la respuesta")
-                return
-            }
+            // Crear la solicitud
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            // Decodificar la respuesta
+            // Convertir el diccionario a JSON
             do {
-                let addressResponse = try JSONDecoder().decode(Address.self, from: data)
-                completion(.success(addressResponse))
+                let jsonData = try JSONSerialization.data(withJSONObject: addressData, options: [])
+                request.httpBody = jsonData
             } catch {
-                completion(.failure(error))
+                print("Error al convertir el diccionario a JSON: \(error.localizedDescription)")
+                return
             }
-        }.resume()
-    }
+            
+            // Ejecutar la solicitud
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let data = data else {
+                    print("No se recibió datos de la respuesta")
+                    return
+                }
+                
+                // Imprimir datos crudos para depuración
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Respuesta JSON: \(jsonString)")
+                }
+                
+                // Decodificar la respuesta
+                do {
+                    let addressResponse = try JSONDecoder().decode(Address.self, from: data)
+                    completion(.success(addressResponse))
+                } catch {
+                    completion(.failure(error))
+                }
+            }.resume()
+        }
     
     func postHelmetData(helmetDictionary: [String: Any], completion: @escaping (Result<Helmet, Error>) -> Void) {
         // URL de la API
@@ -551,6 +561,11 @@ class ApiService {
                 return
             }
             
+            // Imprimir datos crudos para depuración
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("Respuesta JSON: \(jsonString)")
+            }
+            
             // Decodificar la respuesta
             do {
                 let helmetResponse = try JSONDecoder().decode(Helmet.self, from: data)
@@ -560,7 +575,169 @@ class ApiService {
             }
         }.resume()
     }
+    
+    func postUserData(userDictionary: [String: Any], completion: @escaping (Result<UserResponse, Error>) -> Void) {
+            // URL de la API
+            guard let url = URL(string: "http://3.138.244.45/users") else {
+                print("URL inválida")
+                return
+            }
+            
+            // Crear la solicitud
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            // Convertir el diccionario a JSON
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: userDictionary, options: [])
+                request.httpBody = jsonData
+            } catch {
+                print("Error al convertir el diccionario a JSON: \(error.localizedDescription)")
+                return
+            }
+            
+            // Ejecutar la solicitud
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let data = data else {
+                    print("No se recibió datos de la respuesta")
+                    return
+                }
+                
+                // Imprimir datos crudos para depuración
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Respuesta JSON: \(jsonString)")
+                }
+                
+                // Decodificar la respuesta
+                do {
+                    let userResponse = try JSONDecoder().decode(UserResponse.self, from: data)
+                    completion(.success(userResponse))
+                } catch {
+                    completion(.failure(error))
+                }
+            }.resume()
+        }
 
+    func sendVerificationCode(email: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = URL(string: "http://3.138.244.45/verificate-account/send-code")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Agrega el token de autenticación si es necesario
+        if let token = UserDefaults.standard.string(forKey: "authToken") {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        let body: [String: Any] = ["email": email]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Respuesta inesperada del servidor."])))
+                return
+            }
+            
+            if httpResponse.statusCode != 200 {
+                let errorMessage = "Error en la solicitud: \(httpResponse.statusCode)"
+                if let data = data {
+                    let errorData = String(data: data, encoding: .utf8) ?? "Datos vacíos"
+                    completion(.failure(NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "\(errorMessage). Datos de error: \(errorData)"])))
+                } else {
+                    completion(.failure(NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])))
+                }
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos."])))
+                return
+            }
+            
+            do {
+                // Decodifica la respuesta JSON
+                if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let message = jsonResponse["message"] as? String {
+                    completion(.success(message))
+                } else {
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Formato de respuesta JSON inválido."])))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
+    
+    func verifyAccount(email: String, code: String, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let token = UserDefaults.standard.string(forKey: "authToken") else {
+            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Token de autenticación no encontrado"])))
+            return
+        }
+        
+        let url = URL(string: "http://3.138.244.45/verificate-account")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        let body: [String: Any] = ["email": email, "code": code]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Respuesta inesperada del servidor."])))
+                return
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                let serverError = NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "Error del servidor con código de estado: \(httpResponse.statusCode)"])
+                completion(.failure(serverError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Datos de respuesta vacíos."])))
+                return
+            }
+            
+            do {
+                // Decodifica la respuesta JSON
+                if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let message = jsonResponse["message"] as? String {
+                    completion(.success(message))
+                } else {
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Formato de respuesta JSON inválido."])))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        
+        task.resume()
+    }
+    
 }
 
 // Estructura de error personalizada

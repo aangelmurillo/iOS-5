@@ -59,6 +59,18 @@ struct PersonRequestBody: Codable {
     let person_phone_number: String
 }
 
+struct PersonResponse: Codable {
+    let id: Int
+    let person_name: String
+    let person_last_name: String
+    let person_second_last_name: String
+    let person_curp: String
+    let person_phone_number: String
+    let created_at: String
+    let updated_at: String
+}
+
+
 struct User: Codable {
     let id: Int
     let user_name: String
@@ -84,6 +96,25 @@ struct SensorData: Codable {
 
 // ---
 
+struct UserResponse: Codable {
+    let id: Int
+    let user_name: String
+    let email: String
+    let rol_id: Int
+    let person_id: Int
+    let helmet_id: Int?
+    let remember_me_token: String?
+    let verification_code: String?
+    let verificate: Int
+    let created_at: String
+    let updated_at: String
+    let rol: Role
+    let person: PersonResponse
+    let helmet: Helmet?
+}
+
+// ---
+
 struct PersonalHelmetStatsResponse: Codable {
     let status: String
     let data: Stats
@@ -95,16 +126,33 @@ struct Stats: Codable {
     let altitud: StatDetail
     let humedad: StatDetail
     let hscr_04: StatDetail
-    let mq2: StatCount
-    let mq135: StatCount
-    let fc28: StatCount
+    let mq2: StatDetail
+    let mq135: StatDetail
+    let fc28: StatDetail
 }
 
 struct StatDetail: Codable {
     let max: Double?
     let min: Double?
+    
+    private enum CodingKeys: String, CodingKey {
+        case max
+        case min
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let maxString = try? container.decode(String.self, forKey: .max) {
+            max = Double(maxString)
+        } else {
+            max = try? container.decode(Double.self, forKey: .max)
+        }
+        if let minString = try? container.decode(String.self, forKey: .min) {
+            min = Double(minString)
+        } else {
+            min = try? container.decode(Double.self, forKey: .min)
+        }
+    }
 }
 
-struct StatCount: Codable {
-    let count: Int
-}
+

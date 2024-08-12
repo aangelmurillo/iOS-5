@@ -48,14 +48,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 UserDefaults.standard.set(token, forKey: "authToken")
                 print("Token recibido: \(token)")
                 
+                // Fetch user info after successful login
+                self.fetchUserInfoAndRedirect()
+                
+            case .failure(let error):
+                print("Error en la solicitud: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    // Fetch user info and redirect based on role
+    func fetchUserInfoAndRedirect() {
+        ApiService.shared.fetchUserInfo { result in
+            switch result {
+            case .success(let user):
+                print("Nombre de usuario: \(user.user_name)")
+                print("Correo electrónico: \(user.email)")
+                print("Rol del usuario: \(user.rol_id)")
+                
                 DispatchQueue.main.async {
                     if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                        sceneDelegate.userDidLogin()
+                        sceneDelegate.userDidLogin(role_id: user.rol_id)
                     }
                 }
                 
             case .failure(let error):
-                print("Error en la solicitud: \(error.localizedDescription)")
+                print("Error al obtener la información del usuario: \(error.localizedDescription)")
             }
         }
     }

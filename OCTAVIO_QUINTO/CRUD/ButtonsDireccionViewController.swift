@@ -13,9 +13,26 @@ class ButtonsDireccionViewController: UIViewController {
         super.viewDidLoad()
         fetchUserIdentifier()
         // Do any additional setup after loading the view.
-        print(personData ?? "No se encontró nada de personData")
-        print(userDictionary ?? "No se encontró nada de userDictionary")
-        print(helmetDictionary ?? "No se encontró nada de helmetDictionary")
+        print("ButtonsDireccionViewController - viewDidLoad")
+        // En ButtonsDireccionViewController
+        if let personData = personData {
+            print("personData: \(personData)")
+        } else {
+            print("No se encontró nada de personData")
+        }
+
+        if let userDictionary = userDictionary {
+            print("userDictionary: \(userDictionary)")
+        } else {
+            print("No se encontró nada de userDictionary")
+        }
+
+        if let helmetDictionary = helmetDictionary {
+            print("helmetDictionary: \(helmetDictionary)")
+        } else {
+            print("No se encontró nada de helmetDictionary")
+        }
+
     }
     
     @IBAction func seleccionarDirTapped(_ sender: UIButton) {
@@ -27,6 +44,26 @@ class ButtonsDireccionViewController: UIViewController {
             elegirDireccionViewController.userDictionary = userDictionary
             elegirDireccionViewController.helmetDictionary = helmetDictionary
             // Navegar a la vista
+            print("Navigating to ElegirDireccionViewController")
+            // En ButtonsDireccionViewController
+            if let personData = personData {
+                print("personData: \(personData)")
+            } else {
+                print("No se encontró nada de personData")
+            }
+
+            if let userDictionary = userDictionary {
+                print("userDictionary: \(userDictionary)")
+            } else {
+                print("No se encontró nada de userDictionary")
+            }
+
+            if let helmetDictionary = helmetDictionary {
+                print("helmetDictionary: \(helmetDictionary)")
+            } else {
+                print("No se encontró nada de helmetDictionary")
+            }
+
             navigationController?.pushViewController(elegirDireccionViewController, animated: true)
         }
     }
@@ -35,11 +72,26 @@ class ButtonsDireccionViewController: UIViewController {
         // Instanciar la vista desde el storyboard mediante identificador
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let registrarDireccionViewController = storyboard.instantiateViewController(withIdentifier: "RegistrarDireccionViewController") as? RegistrarDireccionViewController {
-            // Pasar los datos necesarios
-            registrarDireccionViewController.personData = personData
-            registrarDireccionViewController.userDictionary = userDictionary
-            registrarDireccionViewController.helmetDictionary = helmetDictionary
             // Navegar a la vista
+            // En ButtonsDireccionViewController
+            if let personData = personData {
+                print("personData: \(personData)")
+            } else {
+                print("No se encontró nada de personData")
+            }
+
+            if let userDictionary = userDictionary {
+                print("userDictionary: \(userDictionary)")
+            } else {
+                print("No se encontró nada de userDictionary")
+            }
+
+            if let helmetDictionary = helmetDictionary {
+                print("helmetDictionary: \(helmetDictionary)")
+            } else {
+                print("No se encontró nada de helmetDictionary")
+            }
+
             navigationController?.pushViewController(registrarDireccionViewController, animated: true)
         }
     }

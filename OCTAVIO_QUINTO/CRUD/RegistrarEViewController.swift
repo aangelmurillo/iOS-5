@@ -53,7 +53,7 @@ class RegistrarEViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func acceptButtonTapped(_ sender: UIButton) {
-        // Validar los datos antes de navegar
+        // Validar los datos antes de enviar
         guard let nombre = txfNombre.text, !nombre.isEmpty,
               let apaterno = txfAPaterno.text, !apaterno.isEmpty,
               let amaterno = txfAMaterno.text, !amaterno.isEmpty,
@@ -73,13 +73,21 @@ class RegistrarEViewController: UIViewController, UITextFieldDelegate {
             "person_phone_number": telefono,
         ]
         
-        // Crear una instancia de `RegistrarUserViewController`
-        if let crearUsuarioVC = storyboard?.instantiateViewController(withIdentifier: "RegistrarUserViewController") as? RegistrarUserViewController {
-            // Pasar el diccionario a la nueva vista
-            crearUsuarioVC.personData = personData
-            
-            // Navegar a la nueva vista
-            navigationController?.pushViewController(crearUsuarioVC, animated: true)
+        // Realizar la solicitud para crear la persona
+        ApiService.shared.postPersonData(personData: personData) { result in
+            switch result {
+            case .success(let personResponse):
+                // Crear una instancia de `RegistrarDireccionViewController`
+                DispatchQueue.main.async {
+                    if let registrarUserViewController = self.storyboard?.instantiateViewController(withIdentifier: "RegistrarUserViewController") as? RegistrarUserViewController {
+                        // Pasar el ID de la persona a la nueva vista
+                        registrarUserViewController.personData = personResponse // o el diccionario completo, según tu API
+                        self.navigationController?.pushViewController(registrarUserViewController, animated: true)
+                    }
+                }
+            case .failure(let error):
+                print("No se pudo crear la persona: \(error.localizedDescription)")
+            }
         }
     }
     
