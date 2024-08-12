@@ -67,9 +67,9 @@ class SensorsViewController: UIViewController {
                     // Configurar la barra de navegación basada en el role_id
                     if user.rol_id == 2 {
                         self?.selectedUser = user
-                        self?.configureCenteredNavBar(title: user.user_name, subtitle: user.helmet?.helmet_serial_number ?? "Casco no encontrado")
+                        self?.configureCenteredNavBar(title: user.user_name, subtitle: self?.selectedUser?.email ?? "Email no encontrado")
                     } else {
-                        self?.configureCenteredNavBar(title: self?.selectedUser?.user_name ?? "Nombre no encontrado", subtitle: self?.selectedUser?.email ?? "Email no encontrado")
+                        self?.configureCenteredNavBar(title: self?.selectedUser?.user_name ?? "Nombre no encontrado", subtitle: self?.selectedUser?.helmet?.helmet_serial_number ?? "Casco no encontrado")
                     }
                     
                 }

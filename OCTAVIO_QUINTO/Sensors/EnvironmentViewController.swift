@@ -112,21 +112,30 @@ class EnvironmentViewController: UIViewController {
     private func updateGasesView() {
         var gasesDetected: String?
 
-        if let mq2Value = mq2Value, mq2Value == 1 {
-            gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CO2, NH3, C6H6"
-        }
-        if let mq135Value = mq135Value, mq135Value == 1 {
-            if gasesDetected != nil {
-                gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CO2, NH3, C6H6, CH4, C3H8, C4H10, H2, CO, C2H50H, CO2, NOx"
-            } else {
-                gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CH4, C3H8, C4H10, H2, CO, C2H50H, CO2, NOx"
-            }
-        }
-        
-        if let gasesText = gasesDetected {
-            updateLabelTextAndColor(for: 0, text: gasesText, color: .systemRed, view: viewGases)
+        // Verifica si ambos valores son cero
+        if let mq2Value = mq2Value, let mq135Value = mq135Value, mq2Value == 0, mq135Value == 0 {
+            gasesDetected = "No se detectan gases peligrosos."
+            // Actualiza la vista con el color verde
+            updateLabelTextAndColor(for: 0, text: gasesDetected!, color: .systemGreen, view: viewGases)
         } else {
-            updateLabelTextAndColor(for: 0, text: "No se detectan gases peligrosos.", color: .systemGreen, view: viewGases)
+            // Verifica el valor de mq2 y mq135 y muestra los gases detectados
+            if let mq2Value = mq2Value, mq2Value == 1 {
+                gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CO2, NH3, C6H6"
+            }
+            if let mq135Value = mq135Value, mq135Value == 1 {
+                if gasesDetected != nil {
+                    gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CO2, NH3, C6H6, CH4, C3H8, C4H10, H2, CO, C2H50H, CO2, NOx"
+                } else {
+                    gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CH4, C3H8, C4H10, H2, CO, C2H50H, CO2, NOx"
+                }
+            }
+
+            if let gasesText = gasesDetected {
+                updateLabelTextAndColor(for: 0, text: gasesText, color: .systemRed, view: viewGases)
+            } else {
+                // Si no hay gases detectados y no es el caso de cero, no cambia la vista
+                updateLabelTextAndColor(for: 0, text: "No se detectan gases peligrosos.", color: .systemGreen, view: viewGases)
+            }
         }
     }
 

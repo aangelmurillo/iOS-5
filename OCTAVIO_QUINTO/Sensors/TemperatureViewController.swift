@@ -102,10 +102,10 @@ class TemperatureViewController: UIViewController {
     }
     
     private func getWarningAndDescription(for celsius: Double) -> (String, String) {
-        if celsius < 27 {
+        if celsius < 28 {
             viewTemperatura.backgroundColor = .systemGreen
             return ("Seguro", "La temperatura está dentro del rango normal.")
-        } else if celsius <= 28 {
+        } else if celsius <= 31 {
             viewTemperatura.backgroundColor = .systemOrange
             return ("Precaución", "La temperatura está aumentando. Tomar precauciones.")
         } else {
