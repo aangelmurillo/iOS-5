@@ -105,6 +105,20 @@ extension VerificacionViewController: UITextFieldDelegate {
         let maxLength = 1
         let currentString: NSString = textField.text as NSString? ?? ""
         let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        // Define the text field type
+        if [txfPrimerC, txfSegundoC, txfTercerC].contains(textField) {
+            // Text fields 1 to 3 accept only letters
+            let allowedCharacters = CharacterSet.letters
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet) && newString.length <= maxLength
+        } else if [txfCuartoC, txfQuintoC, txfSextoC].contains(textField) {
+            // Text fields 4 to 6 accept only digits
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet) && newString.length <= maxLength
+        }
+        
         return newString.length <= maxLength
     }
 }

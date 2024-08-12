@@ -23,8 +23,19 @@ class CambioContraViewController: UIViewController, UITextFieldDelegate {
 
         print("Email recibido en cambiar contra: \(email ?? "No se recibió nada")")
         print("VerificationCode recibido en cambiar contra: \(verificationCode ?? "No se recibió nada")")
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txfNuevaContraseña {
+            txfConfContraseña.becomeFirstResponder()
+        } else if textField == txfConfContraseña {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
     
     @IBAction func confirmarNuevaContraseña(_ sender: UIButton) {
         guard let email = email else {

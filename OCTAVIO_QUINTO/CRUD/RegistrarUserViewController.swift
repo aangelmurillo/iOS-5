@@ -1,7 +1,7 @@
 import UIKit
 
 class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var viewR: UIView!
     @IBOutlet weak var btnAceptar: UIButton!
     @IBOutlet weak var lbluser: UILabel!
@@ -11,16 +11,16 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txfConfirmarContraseña: UITextField!
     @IBOutlet weak var segRol: UISegmentedControl!
     @IBOutlet weak var txfCasco: UITextField!
-
+    
     var personData: PersonResponse? // Recibir el objeto PersonResponse
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lbluser.adjustFontSize()
         btnAceptar.makeRoundButton(cornerRadius: 5.0)
         viewR.makeRoundView(cornerRadius: 5)
         fetchUserIdentifier()
-
+        
         // Configurar delegados
         txfUsername.delegate = self
         txfEmail.delegate = self
@@ -51,9 +51,9 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         // Verificar si todos los textfields están llenos
         let allFieldsFilled = txfUsername.text?.isEmpty == false &&
-                              txfEmail.text?.isEmpty == false &&
-                              txfPassword.text?.isEmpty == false &&
-                              txfConfirmarContraseña.text?.isEmpty == false
+        txfEmail.text?.isEmpty == false &&
+        txfPassword.text?.isEmpty == false &&
+        txfConfirmarContraseña.text?.isEmpty == false
         btnAceptar.isEnabled = allFieldsFilled
     }
     
@@ -152,7 +152,7 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Navegar al siguiente campo o cerrar el teclado si es el último
         if textField == txfUsername {
@@ -197,5 +197,28 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
         }
         
         return nil
+    }
+    
+    // MARK: - UITextFieldDelegate Methods
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Limitar la longitud y formato del texto para txfCasco
+        if textField == txfCasco {
+            let currentText = (textField.text ?? "") as NSString
+            let updatedText = currentText.replacingCharacters(in: range, with: string)
+            
+            // Verificar el formato AA000
+            let validCharacters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+            let characterSet = CharacterSet(charactersIn: string)
+            if !validCharacters.isSuperset(of: characterSet) {
+                return false
+            }
+            
+            let regex = "^[A-Z]{0,2}\\d{0,3}$"
+            let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+            return predicate.evaluate(with: updatedText)
+        }
+        
+        return true
     }
 }
