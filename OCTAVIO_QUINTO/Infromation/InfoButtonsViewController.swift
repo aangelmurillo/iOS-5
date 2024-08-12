@@ -57,6 +57,9 @@ class InfoButtonsViewController: UIViewController {
                     }
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error al obtener la información del usuario", message: "No se pudo obtener la información del usuario seleccionado")
+                }
                 print("Error al obtener la información del usuario: \(error.localizedDescription)")
             }
         }

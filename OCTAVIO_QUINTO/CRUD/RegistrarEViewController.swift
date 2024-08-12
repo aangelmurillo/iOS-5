@@ -86,7 +86,9 @@ class RegistrarEViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             case .failure(let error):
-                print("No se pudo crear la persona: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error al crear la persona", message: "CURP o teléfono ya en uso")
+                }
             }
         }
     }

@@ -52,11 +52,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.fetchUserInfoAndRedirect()
                 
             case .failure(let error):
+                // Mostrar el mensaje de error en una alerta
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error de autenticación", message: "Usuario o contraseña incorrectos")
+                }
                 print("Error en la solicitud: \(error.localizedDescription)")
             }
         }
     }
-    
+
     // Fetch user info and redirect based on role
     func fetchUserInfoAndRedirect() {
         ApiService.shared.fetchUserInfo { result in
@@ -73,6 +77,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
                 
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error al obtener la información del usuario", message: "Login fallido")
+                }
                 print("Error al obtener la información del usuario: \(error.localizedDescription)")
             }
         }

@@ -12,14 +12,14 @@ class CrudBtnsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         btnRE.makeRoundButton(cornerRadius: 5)
-        BtnEli.makeRoundButton(cornerRadius: 5)
-        BtnEdit.makeRoundButton(cornerRadius: 5)
         
         fetchUserIdentifier()
         
         btnRE.addTarget(self, action: #selector(reBtnTapped), for: .touchUpInside)
+        /*
         BtnEli.addTarget(self, action: #selector(eliminarBtnTapped), for: .touchUpInside)
         BtnEdit.addTarget(self, action: #selector(editarBtnTapped), for: .touchUpInside)
+         */
     }
     
     @objc func reBtnTapped() {

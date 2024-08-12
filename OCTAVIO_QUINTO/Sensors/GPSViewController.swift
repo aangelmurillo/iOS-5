@@ -83,6 +83,9 @@ class GPSViewController: UIViewController {
                         print("Longitud actual: \(sensorValue)")
                     }
                 case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error obteniendo los datos del sensor", message: "No se pudo obtener las coordenadas")
+                    }
                     print("Error fetching sensor data: \(error.localizedDescription)")
                 }
             }

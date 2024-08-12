@@ -159,6 +159,9 @@ class ScrollViewUserSensorsViewController: UIViewController {
                     self.addUserViews(users: users)
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error al obtener la lista de usuarios", message: "No se pudo obtener la lista de usuarios")
+                }
                 print("Error al obtener la lista de usuarios (FetchAllUsers): \(error.localizedDescription)")
             }
         }

@@ -36,6 +36,7 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
         txfEmail.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         txfPassword.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         txfConfirmarContraseña.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        txfCasco.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         // Configurar el estado inicial del campo de casco
         updateCascoField()
@@ -53,7 +54,8 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
         let allFieldsFilled = txfUsername.text?.isEmpty == false &&
         txfEmail.text?.isEmpty == false &&
         txfPassword.text?.isEmpty == false &&
-        txfConfirmarContraseña.text?.isEmpty == false
+        txfConfirmarContraseña.text?.isEmpty == false &&
+        (segRol.selectedSegmentIndex == 0 || (txfCasco.text?.count ?? 0) == 5)
         btnAceptar.isEnabled = allFieldsFilled
     }
     
@@ -121,12 +123,16 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
                                             print("No se pudo instanciar RegistrarDireccionViewController")
                                         }
                                     case .failure(let error):
-                                        print("No se pudo crear el usuario: \(error.localizedDescription)")
+                                        DispatchQueue.main.async {
+                                            self.showAlert(title: "Error al crear el usuario", message: "Username o email ya asignado")
+                                        }
                                     }
                                 }
                             }
                         case .failure(let error):
-                            print("No se pudo crear el casco: \(error.localizedDescription)")
+                            DispatchQueue.main.async {
+                                self.showAlert(title: "Error al crear el casco", message: "Casco ya registrado")
+                            }
                         }
                     }
                 }
@@ -145,14 +151,16 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
                                 print("No se pudo instanciar RegistrarDireccionViewController")
                             }
                         case .failure(let error):
-                            print("No se pudo crear el usuario: \(error.localizedDescription)")
+                            DispatchQueue.main.async {
+                                self.showAlert(title: "Error al crear el usuario", message: "Username o email ya asignado")
+                            }
                         }
                     }
                 }
             }
         }
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Navegar al siguiente campo o cerrar el teclado si es el último
         if textField == txfUsername {
@@ -196,29 +204,14 @@ class RegistrarUserViewController: UIViewController, UITextFieldDelegate {
             return "Las contraseñas no coinciden"
         }
         
-        return nil
-    }
-    
-    // MARK: - UITextFieldDelegate Methods
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Limitar la longitud y formato del texto para txfCasco
-        if textField == txfCasco {
-            let currentText = (textField.text ?? "") as NSString
-            let updatedText = currentText.replacingCharacters(in: range, with: string)
-            
-            // Verificar el formato AA000
-            let validCharacters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-            let characterSet = CharacterSet(charactersIn: string)
-            if !validCharacters.isSuperset(of: characterSet) {
-                return false
+        // Validación del casco
+        if segRol.selectedSegmentIndex != 1 {
+            guard let casco = txfCasco.text, casco.count == 5, !casco.contains(where: { $0.isSymbol || $0.isPunctuation }) else {
+                return "El campo del casco debe tener exactamente 5 caracteres alfanuméricos sin caracteres especiales"
             }
-            
-            let regex = "^[A-Z]{0,2}\\d{0,3}$"
-            let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-            return predicate.evaluate(with: updatedText)
         }
         
-        return true
+        return nil
     }
+
 }

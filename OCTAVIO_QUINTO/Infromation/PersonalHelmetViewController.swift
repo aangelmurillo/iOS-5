@@ -65,14 +65,14 @@ class PersonalHelmetViewController: UIViewController {
                     self.updateLabels(with: response.data)
                 } else {
                     print("No se pudo obtener la respuesta de la API")
-                    self.lblTemperaturaMax.text = "Valores no existentes"
-                    self.lblPresionMax.text = "Valores no existentes"
-                    self.lblHumedadMax.text = "Valores no existentes"
-                    self.lblAltitudMax.text = "Valores no existentes"
-                    self.lblTemperaturaMin.text = "Valores no existentes"
-                    self.lblPresionMin.text = "Valores no existentes"
-                    self.lblHumedadMin.text = "Valores no existentes"
-                    self.lblAltitudMin.text = "Valores no existentes"
+                    self.lblTemperaturaMax.text = "Datos no existentes"
+                    self.lblPresionMax.text = "Datos no existentes"
+                    self.lblHumedadMax.text = "Datos no existentes"
+                    self.lblAltitudMax.text = "Datos no existentes"
+                    self.lblTemperaturaMin.text = "Datos no existentes"
+                    self.lblPresionMin.text = "Datos no existentes"
+                    self.lblHumedadMin.text = "Datos no existentes"
+                    self.lblAltitudMin.text = "Datos no existentes"
                 }
             }
         }

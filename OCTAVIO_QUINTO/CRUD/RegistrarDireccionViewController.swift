@@ -105,13 +105,17 @@ class RegistrarDireccionViewController: UIViewController, UITextFieldDelegate {
                                     }
                                 }
                             case .failure(let error):
-                                print("No se pudo enviar el código de verificación: \(error.localizedDescription)")
+                                DispatchQueue.main.async {
+                                    self.showAlert(title: "Error al enviar el código de verificación", message: error.localizedDescription)
+                                }
                             }
                         }
                     }
                     
                 case .failure(let error):
-                    print("No se pudo crear la dirección: \(error.localizedDescription)")
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "Error al crear la dirección", message: "No se pudo crear la dirección")
+                    }
                 }
             }
         }
@@ -119,5 +123,24 @@ class RegistrarDireccionViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func cancelarCrearUsuario(_ sender: UIButton) {
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    // UITextFieldDelegate Method
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Solo permitir números en txfNumExterior, txfNumInt, txfCP
+        if textField == txfNumExterior || textField == txfNumInt || textField == txfCP {
+            let allowedCharacters = "0123456789"
+            let characterSet = CharacterSet(charactersIn: allowedCharacters)
+            let typedCharacterSet = CharacterSet(charactersIn: string)
+            return characterSet.isSuperset(of: typedCharacterSet)
+        }
+        
+        // Verificar que txfCP tenga exactamente 5 dígitos
+        if textField == txfCP {
+            let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+            return newText.count <= 5 && newText.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        }
+        
+        return true
     }
 }

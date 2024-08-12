@@ -155,4 +155,9 @@ struct StatDetail: Codable {
     }
 }
 
+struct ErrorResponse: Decodable {
+    let message: String
+}
+
+
 

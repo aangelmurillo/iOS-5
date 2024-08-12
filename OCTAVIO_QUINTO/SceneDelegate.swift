@@ -52,9 +52,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             firstNavController.tabBarItem = UITabBarItem(title: "Sensores", image: UIImage(named: "list.png"), tag: 0)
             
             // Configura el segundo UINavigationController para Administrador
-            let secondViewController = storyboard.instantiateViewController(withIdentifier: "CRUDViewController")
+            let secondViewController = storyboard.instantiateViewController(withIdentifier: "CrudBtnsViewController")
             let secondNavController = UINavigationController(rootViewController: secondViewController)
-            secondNavController.tabBarItem = UITabBarItem(title: "CRUD", image: UIImage(systemName: "square.and.pencil"), tag: 1)
+            secondNavController.tabBarItem = UITabBarItem(title: "Registrar", image: UIImage(systemName: "square.and.pencil"), tag: 1)
             
             // Configura el tercer UINavigationController para Administrador
             let thirdViewController = storyboard.instantiateViewController(withIdentifier: "ScrollViewUserSensorsViewController") as! ScrollViewUserSensorsViewController

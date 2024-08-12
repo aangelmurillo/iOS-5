@@ -61,6 +61,9 @@ class TemperatureViewController: UIViewController {
                     let sensorValue = sensorData.latest_value
                     print("Petición realizada a las \(Date()) - Sensor: \(sensorName), Valor: \(sensorValue)")
                 case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error obteniendo los datos del sensor", message: "No se pudo obtener la temperatura")
+                    }
                     print("Error fetching sensor data: \(error.localizedDescription)")
                 }
             }

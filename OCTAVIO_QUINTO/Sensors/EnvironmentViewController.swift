@@ -11,6 +11,10 @@ class EnvironmentViewController: UIViewController {
     var selectedUser: User?
     var timer: Timer? // Timer para las peticiones
 
+    // Variables para almacenar el estado de los sensores
+    private var mq2Value: Double?
+    private var mq135Value: Double?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Ajusta el tamaño de fuente de las etiquetas
@@ -78,6 +82,9 @@ class EnvironmentViewController: UIViewController {
                     let sensorValue = sensorData.latest_value
                     self?.updateUI(for: sensorType, with: sensorValue)
                 case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error obteniendo los datos del sensor", message: "No se pudo obtener datos de los sensores")
+                    }
                     print("Error fetching sensor data: \(error.localizedDescription)")
                 }
             }
@@ -86,9 +93,10 @@ class EnvironmentViewController: UIViewController {
 
     private func updateUI(for sensorType: String, with value: Double) {
         switch sensorType {
-        case "mq2", "mq135":
-            let show = value == 1
-            updateLabelTextAndColor(for: 0, text: show ? "Se han detectado gases peligrosos." : "No se detectan gases peligrosos.", color: show ? .systemRed : .systemGreen, view: viewGases)
+        case "mq2":
+            mq2Value = value
+        case "mq135":
+            mq135Value = value
         case "fc28":
             updateLabelTextAndColor(for: 1, text: value == 1 ? "La tierra está peligrosamente húmeda." : "La tierra está en buen estado.", color: value == 1 ? .systemRed : .systemGreen, view: viewTierra)
         case "humedad":
@@ -97,11 +105,35 @@ class EnvironmentViewController: UIViewController {
         default:
             break
         }
+        
+        updateGasesView()
+    }
+
+    private func updateGasesView() {
+        var gasesDetected: String?
+
+        if let mq2Value = mq2Value, mq2Value == 1 {
+            gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CO2, NH3, C6H6"
+        }
+        if let mq135Value = mq135Value, mq135Value == 1 {
+            if gasesDetected != nil {
+                gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CO2, NH3, C6H6, CH4, C3H8, C4H10, H2, CO, C2H50H, CO2, NOx"
+            } else {
+                gasesDetected = "¡Alerta! Se han detectado los siguientes gases: CH4, C3H8, C4H10, H2, CO, C2H50H, CO2, NOx"
+            }
+        }
+        
+        if let gasesText = gasesDetected {
+            updateLabelTextAndColor(for: 0, text: gasesText, color: .systemRed, view: viewGases)
+        } else {
+            updateLabelTextAndColor(for: 0, text: "No se detectan gases peligrosos.", color: .systemGreen, view: viewGases)
+        }
     }
 
     private func updateLabelTextAndColor(for tag: Int, text: String, color: UIColor, view: UIView) {
         if let label = lblsEnvSensors.first(where: { $0.tag == tag }) {
             label.text = text
+            label.textColor = .white // Asegura que el texto sea blanco
         } else {
             print("No label found with tag \(tag)")
         }
